@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.oddlyspaced.zippytest.kellinwood.zipio;
+package com.oddlyspaced.prjkt.utils.kellinwood.zipio;
 
-import com.oddlyspaced.zippytest.kellinwood.logging.LoggerInterface;
-import com.oddlyspaced.zippytest.kellinwood.logging.LoggerManager;
+import com.oddlyspaced.prjkt.utils.kellinwood.logging.LoggerInterface;
+import com.oddlyspaced.prjkt.utils.kellinwood.logging.LoggerManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.LinkedList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /**

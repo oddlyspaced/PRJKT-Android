@@ -31,12 +31,13 @@ package com.oddlyspaced.prjkt.utils.kellinwood.zipsigner;
 import android.content.Context;
 import android.os.Environment;
 
-import com.oddlyspaced.zippytest.kellinwood.logging.LoggerInterface;
-import com.oddlyspaced.zippytest.kellinwood.logging.LoggerManager;
-import com.oddlyspaced.zippytest.kellinwood.optional.SignatureBlockGenerator;
-import com.oddlyspaced.zippytest.kellinwood.zipio.ZioEntry;
-import com.oddlyspaced.zippytest.kellinwood.zipio.ZipInput;
-import com.oddlyspaced.zippytest.kellinwood.zipio.ZipOutput;
+
+import com.oddlyspaced.prjkt.utils.kellinwood.logging.LoggerInterface;
+import com.oddlyspaced.prjkt.utils.kellinwood.logging.LoggerManager;
+import com.oddlyspaced.prjkt.utils.kellinwood.optional.SignatureBlockGenerator;
+import com.oddlyspaced.prjkt.utils.kellinwood.zipio.ZioEntry;
+import com.oddlyspaced.prjkt.utils.kellinwood.zipio.ZipInput;
+import com.oddlyspaced.prjkt.utils.kellinwood.zipio.ZipOutput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -64,7 +65,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

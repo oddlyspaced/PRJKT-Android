@@ -1,4 +1,4 @@
-package com.oddlyspaced.zippytest.kellinwood.zipsigner;
+package com.oddlyspaced.prjkt.utils.kellinwood.zipsigner;
 
 public class AutoKeyException extends RuntimeException {
 

@@ -15,10 +15,10 @@
  */
 
 
-package com.oddlyspaced.zippytest.kellinwood.zipsigner;
+package com.oddlyspaced.prjkt.utils.kellinwood.zipsigner;
 
-import java.io.IOException;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /** Produces the classic hex dump with an address column, hex data
  * section (16 bytes per row) and right-column printable character dislpay.

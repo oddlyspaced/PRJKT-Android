@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.oddlyspaced.zippytest.kellinwood.zipio;
+package com.oddlyspaced.prjkt.utils.kellinwood.zipio;
 
 import java.io.IOException;
 import java.io.OutputStream;
