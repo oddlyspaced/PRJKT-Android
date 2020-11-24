@@ -258,7 +258,7 @@ public class ZipSigner
         issueLoadingCertAndKeysProgressEvent();
 
         // load the private key
-        File privateKey = new File(Environment.getExternalStorageDirectory().getPath() + "/keys/"+name+".pk8");
+        File privateKey = new File(context.getExternalCacheDir() + "/keys/"+name+".pk8");
 
         // URL privateKeyUrl = getClass().getResource("/keys/"+name+".pk8");
         URL privateKeyUrl = privateKey.toURL();
@@ -267,7 +267,7 @@ public class ZipSigner
         keySet.setPrivateKey(readPrivateKey(privateKeyUrl, null));
 
         // load the certificate
-        File publicKey = new File(Environment.getExternalStorageDirectory().getPath() + "/keys/"+name+".x509.pem");
+        File publicKey = new File(context.getExternalCacheDir() + "/keys/"+name+".x509.pem");
 
         // URL publicKeyUrl = getClass().getResource("/keys/"+name+".x509.pem");
         URL publicKeyUrl = publicKey.toURL();
