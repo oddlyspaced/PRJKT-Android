@@ -26,12 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val templateIconPath by lazy {
-        File(applicationContext.externalCacheDir!!.path, "template/res/drawable-xxhdpi-v4").path
+        File(applicationContext.externalCacheDir!!.path, "template/res/drawable-nodpi-v4").path
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        template.deleteRecursively()
 
         if (!template.exists()) {
             copyTemplate()
@@ -44,16 +46,15 @@ class MainActivity : AppCompatActivity() {
         setupOnClick()
     }
 
-    private val icons = arrayListOf("com_oneplus_camera", "com_google_android_calendar", "com_android_chrome", "com_google_android_contacts", "net_oneplus_deskclock", "com_google_android_gm", "com_android_vending", "com_google_android_apps_messaging", "com_oneplus_gallery")
+    private val icons = arrayListOf("chrome", "spotify", "camera", "calendar", "contacts", "clock", "phone", "netflix", "playstore", "message", "whatsapp")
 
     private fun setupOnClick() {
         btnRender.setOnClickListener {
-            renderIcon(icons[0])
             txStatus.text = "Rendered!"
-            /* for (icon in icons) {
+            for (icon in icons) {
                 imgForeground.setImageResource(resources.getIdentifier(icon, "drawable", applicationContext.packageName))
-                renderIcon("$icon.png")
-            }*/
+                renderIcon("$icon")
+            }
         }
 
         btnPack.setOnClickListener {
