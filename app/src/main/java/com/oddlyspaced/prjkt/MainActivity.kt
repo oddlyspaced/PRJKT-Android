@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         setupOnClick()
     }
 
-    private val icons = arrayListOf("chrome", "spotify", "camera", "calendar", "contacts", "clock", "phone", "netflix", "playstore", "message", "whatsapp")
+    private val icons = arrayListOf("chrome", "spotify", "camera", "calendar", "contacts", "clock", "phone", "netflix", "playstore", "message", "whatsapp", "telegram", "instagram", "gmail", "google", "settings")
 
     private fun setupOnClick() {
         btnRender.setOnClickListener {
