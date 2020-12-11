@@ -4,19 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.oddlyspaced.prjkt.R
-import com.oddlyspaced.prjkt.databinding.ItemOnlyIconBinding
+import com.oddlyspaced.prjkt.databinding.ItemShapeBinding
+import com.oddlyspaced.prjkt.modal.ShapeItem
 
 // Adapter for the library list view on About page
-class ShapeSelectAdapter(private val list: ArrayList<Boolean>): RecyclerView.Adapter<ShapeSelectAdapter.ViewHolder>() {
+class ShapeSelectAdapter(private val list: ArrayList<ShapeItem>): RecyclerView.Adapter<ShapeSelectAdapter.ViewHolder>() {
 
     private lateinit var context: Context
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val card: MaterialCardView = ItemOnlyIconBinding.bind(itemView).cardItemSingle
+        val card: MaterialCardView = ItemShapeBinding.bind(itemView).cardItemSingle
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,9 +33,24 @@ class ShapeSelectAdapter(private val list: ArrayList<Boolean>): RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        if (item) {
-            holder.card.strokeColor = "#317AFF".toColorInt()
+        if (item.isActive) {
+            holder.card.strokeColor = ContextCompat.getColor(context, R.color.blue)
         }
+        else {
+            holder.card.strokeColor = ContextCompat.getColor(context, R.color.background_light)
+        }
+        holder.card.setOnClickListener {
+            item.onClick()
+            activateSingle(position)
+            notifyDataSetChanged()
+        }
+    }
+
+    private fun activateSingle(position: Int) {
+        list.forEach {
+            it.isActive = false
+        }
+        list[position].isActive = true
     }
 
 }

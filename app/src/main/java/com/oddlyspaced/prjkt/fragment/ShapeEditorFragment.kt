@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.ShapeSelectAdapter
 import com.oddlyspaced.prjkt.databinding.FragmentEditorShapeBinding
 import com.oddlyspaced.prjkt.external.IconBackground
+import com.oddlyspaced.prjkt.modal.ShapeItem
 
 class ShapeEditorFragment(val background: IconBackground) : Fragment() {
 
@@ -20,17 +21,37 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val layout = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
-        val items = arrayListOf(false, false, true, true)
+        val items = arrayListOf(
+            ShapeItem(
+                false
+            ) {
+                background.cornerRadius = 360F
+            },
+            ShapeItem(
+                false
+            ) {
+                background.numberOfSides = 4
+                background.cornerRadius = 0F
+            },
+            ShapeItem(
+                false
+            ) {
+                background.numberOfSides = 4
+                background.cornerRadius = 50F
+            },
+            ShapeItem(
+                false
+            ) {
+                background.numberOfSides = 8
+                background.cornerRadius = 50F
+            },
+        )
         layout.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         layout.rvShapes.adapter = ShapeSelectAdapter(items)
 
         layout.sliderShapeRotation.addOnChangeListener { _, value, _ ->
-            background.cornerRadius = value
-            background.scale = 1.25F
+            background.rotation = value
         }
-
-        background.numberOfSides = 4
-        background.cornerRadius = 10F
 
         return layout.root
     }
