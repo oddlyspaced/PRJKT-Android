@@ -11,7 +11,7 @@ import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ItemOnlyIconBinding
 
 // Adapter for the library list view on About page
-class ItemSelectAdapter(private val list: ArrayList<Boolean>): RecyclerView.Adapter<ItemSelectAdapter.ViewHolder>() {
+class ShapeSelectAdapter(private val list: ArrayList<Boolean>): RecyclerView.Adapter<ShapeSelectAdapter.ViewHolder>() {
 
     private lateinit var context: Context
 
@@ -21,7 +21,7 @@ class ItemSelectAdapter(private val list: ArrayList<Boolean>): RecyclerView.Adap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-        val layout = LayoutInflater.from(context).inflate(R.layout.item_only_icon, parent, false)
+        val layout = LayoutInflater.from(context).inflate(R.layout.item_shape, parent, false)
         return ViewHolder(layout)
     }
 

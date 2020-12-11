@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.oddlyspaced.prjkt.adapter.ItemSelectAdapter
+import com.oddlyspaced.prjkt.adapter.ShapeSelectAdapter
 import com.oddlyspaced.prjkt.databinding.FragmentEditorShapeBinding
 import com.oddlyspaced.prjkt.external.IconBackground
 
@@ -22,7 +22,7 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
         val layout = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
         val items = arrayListOf(false, false, true, true)
         layout.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        layout.rvShapes.adapter = ItemSelectAdapter(items)
+        layout.rvShapes.adapter = ShapeSelectAdapter(items)
 
         layout.sliderShapeRotation.addOnChangeListener { _, value, _ ->
             background.cornerRadius = value
