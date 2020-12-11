@@ -23,6 +23,6 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        supportFragmentManager.beginTransaction().add(binding.frag.id, ShapeEditorFragment.newInstance(binding.textView), "hi").commit()
+        supportFragmentManager.beginTransaction().add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "hi").commit()
     }
 }

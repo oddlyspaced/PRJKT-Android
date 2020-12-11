@@ -123,6 +123,7 @@
                     app:srcCompat="@drawable/ic_reset" />
 
                 <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderShapeRotation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
