@@ -19,40 +19,75 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
         }
     }
 
+    private lateinit var binding: FragmentEditorShapeBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layout = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
+        binding = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
         val items = arrayListOf(
-            ShapeItem(
+            ShapeItem( // circle
                 false
             ) {
+                hideRadiusSection()
+                hideSidesSection()
                 background.cornerRadius = 360F
             },
-            ShapeItem(
+            ShapeItem( // square
                 false
             ) {
+                hideRadiusSection()
+                hideSidesSection()
                 background.numberOfSides = 4
                 background.cornerRadius = 0F
             },
-            ShapeItem(
+            ShapeItem( // oval
                 false
             ) {
+                hideSidesSection()
+                showRadiusSection()
                 background.numberOfSides = 4
                 background.cornerRadius = 50F
             },
-            ShapeItem(
+            ShapeItem( // polygon
                 false
             ) {
+                showRadiusSection()
+                showSidesSection()
                 background.numberOfSides = 8
                 background.cornerRadius = 50F
             },
         )
-        layout.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        layout.rvShapes.adapter = ShapeSelectAdapter(items)
+        binding.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvShapes.adapter = ShapeSelectAdapter(items)
 
-        layout.sliderShapeRotation.addOnChangeListener { _, value, _ ->
+        binding.sliderShapeRotation.addOnChangeListener { _, value, _ ->
             background.rotation = value
         }
 
-        return layout.root
+        binding.sliderShapeRadius.addOnChangeListener { _, value, _ ->
+            background.cornerRadius = value
+        }
+
+        binding.sliderShapeSides.addOnChangeListener { _, value, _ ->
+            background.numberOfSides = value.toInt()
+        }
+
+        return binding.root
     }
+
+    private fun showRadiusSection() {
+        binding.consShapeRadius.visibility = View.VISIBLE
+    }
+
+    private fun showSidesSection() {
+        binding.consShapeSides.visibility = View.VISIBLE
+    }
+
+    private fun hideRadiusSection() {
+        binding.consShapeRadius.visibility = View.GONE
+    }
+
+    private fun hideSidesSection() {
+        binding.consShapeSides.visibility = View.GONE
+    }
+
 }
