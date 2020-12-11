@@ -1,17 +1,22 @@
 package com.oddlyspaced.prjkt
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.graphics.toColorInt
 import androidx.core.widget.ImageViewCompat
 import com.oddlyspaced.prjkt.utils.kellinwood.zipsigner.ZipSigner
@@ -43,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             copyKeys()
         }
 
+        checkInstallPermission()
         setupOnClick()
     }
 
@@ -68,8 +74,7 @@ class MainActivity : AppCompatActivity() {
                 // imgForeground.imageTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
                 // imgForeground.setTint(editTextForeground.text.toString())
                 cvBackground.setCardBackgroundColor(editTextBackground.text.toString().toColorInt())
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
@@ -123,6 +128,8 @@ class MainActivity : AppCompatActivity() {
             val outFile = File(applicationContext.externalCacheDir!!.path, "app-signed.apk")
             zipSigner.signZip(app.path, outFile.path)
             Toast.makeText(applicationContext, "SUCCESS", Toast.LENGTH_LONG).show()
+
+            installApk(outFile)
         } catch (e: Exception) {
             Toast.makeText(applicationContext, "ERROR", Toast.LENGTH_LONG).show()
             Log.e("ERROR", e.toString())
@@ -130,8 +137,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun ImageView.setTint(colorRes: String) {
-        ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(Color.parseColor(colorRes)))
+    private fun checkInstallPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (!packageManager.canRequestPackageInstalls()) {
+                startActivityForResult(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse(String.format("package:%s", getPackageName()))), 1234);
+            }
+        }
     }
 
+    private fun installApk(apk: File) {
+        val intent = Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(uriFromFile(apk), "application/vnd.android.package-archive");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        try {
+            startActivity(intent)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace();
+            Log.e("TAG", "Error in opening the file!");
+        }
+    }
+
+    private fun uriFromFile(file: File): Uri {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            FileProvider.getUriForFile(applicationContext, BuildConfig.APPLICATION_ID + ".provider", file);
+        } else {
+            Uri.fromFile(file);
+        }
+    }
 }
