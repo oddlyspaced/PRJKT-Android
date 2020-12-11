@@ -1,11 +1,12 @@
-package com.oddlyspaced.prjkt
+package com.oddlyspaced.prjkt.activity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
+import com.oddlyspaced.prjkt.fragment.ShapeEditorFragment
 
 class EditorActivity : AppCompatActivity() {
 

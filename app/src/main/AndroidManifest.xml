@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PRJKT">
-        <activity android:name=".EditorActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.EditorActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

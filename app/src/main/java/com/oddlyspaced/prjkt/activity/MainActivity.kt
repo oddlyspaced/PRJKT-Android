@@ -1,4 +1,4 @@
-package com.oddlyspaced.prjkt
+package com.oddlyspaced.prjkt.activity
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.graphics.toColorInt
+import com.oddlyspaced.prjkt.BuildConfig
 import com.oddlyspaced.prjkt.databinding.ActivityMainBinding
 import com.oddlyspaced.prjkt.utils.kellinwood.zipsigner.ZipSigner
 import org.zeroturnaround.zip.ZipUtil

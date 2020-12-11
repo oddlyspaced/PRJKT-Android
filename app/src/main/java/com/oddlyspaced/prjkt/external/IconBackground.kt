@@ -1,4 +1,4 @@
-package com.oddlyspaced.prjkt
+package com.oddlyspaced.prjkt.external
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,6 +8,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.oddlyspaced.prjkt.R
 import com.stkent.polygondrawingutil.PolygonDrawingUtil
 
 // https://raw.githubusercontent.com/stkent/PolygonDrawingUtil/master/app/src/main/java/com/stkent/polygondrawingutildemo/DemoView.kt

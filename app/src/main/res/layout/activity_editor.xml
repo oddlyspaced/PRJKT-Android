@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/editor_background"
     android:fitsSystemWindows="true"
-    tools:context=".EditorActivity">
+    tools:context=".activity.EditorActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frag"
@@ -25,7 +25,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-    <com.oddlyspaced.prjkt.IconBackground
+    <com.oddlyspaced.prjkt.external.IconBackground
         android:id="@+id/imgIconBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"

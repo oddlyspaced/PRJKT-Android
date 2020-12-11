@@ -1,13 +1,13 @@
-package com.oddlyspaced.prjkt
+package com.oddlyspaced.prjkt.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
+import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ItemOnlyIconBinding
 
 // Adapter for the library list view on About page
