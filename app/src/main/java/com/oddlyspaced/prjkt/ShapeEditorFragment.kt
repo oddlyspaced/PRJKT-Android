@@ -17,7 +17,7 @@ class ShapeEditorFragment(val textView: TextView): Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val layout = FragmentEditorShapeBinding.inflate(layoutInflater)
+        val layout = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
         layout.button.text = "Wow this works"
         layout.button.setOnClickListener {
             textView.text = "Dang"
