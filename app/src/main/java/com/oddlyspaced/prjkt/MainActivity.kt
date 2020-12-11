@@ -1,30 +1,25 @@
 package com.oddlyspaced.prjkt
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.Settings
 import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.graphics.toColorInt
-import androidx.core.widget.ImageViewCompat
+import com.oddlyspaced.prjkt.databinding.ActivityMainBinding
 import com.oddlyspaced.prjkt.utils.kellinwood.zipsigner.ZipSigner
-import kotlinx.android.synthetic.main.activity_main.*
 import org.zeroturnaround.zip.ZipUtil
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private val template by lazy {
         File(applicationContext.externalCacheDir!!.path, "template")
@@ -36,7 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        startActivity(Intent(applicationContext, EditorActivity::class.java))
 
         template.deleteRecursively()
 
@@ -52,28 +49,45 @@ class MainActivity : AppCompatActivity() {
         setupOnClick()
     }
 
-    private val icons = arrayListOf("chrome", "spotify", "camera", "calendar", "contacts", "clock", "phone", "netflix", "playstore", "message", "whatsapp", "telegram", "instagram", "gmail", "google", "settings")
+    private val icons = arrayListOf(
+        "chrome",
+        "spotify",
+        "camera",
+        "calendar",
+        "contacts",
+        "clock",
+        "phone",
+        "netflix",
+        "playstore",
+        "message",
+        "whatsapp",
+        "telegram",
+        "instagram",
+        "gmail",
+        "google",
+        "settings"
+    )
 
     private fun setupOnClick() {
-        btnRender.setOnClickListener {
-            txStatus.text = "Rendered!"
+        binding.btnRender.setOnClickListener {
+            binding.txStatus.text = "Rendered!"
             for (icon in icons) {
-                imgForeground.setImageResource(resources.getIdentifier(icon, "drawable", applicationContext.packageName))
+                binding.imgForeground.setImageResource(resources.getIdentifier(icon, "drawable", applicationContext.packageName))
                 renderIcon("$icon")
             }
         }
 
-        btnPack.setOnClickListener {
+        binding.btnPack.setOnClickListener {
             packApk()
-            txStatus.text = "Apk Packing Done"
+            binding.txStatus.text = "Apk Packing Done"
         }
 
-        btnApply.setOnClickListener {
+        binding.btnApply.setOnClickListener {
             try {
-                imgForeground.setColorFilter(editTextForeground.text.toString().toColorInt())
+                binding.imgForeground.setColorFilter(binding.editTextForeground.text.toString().toColorInt())
                 // imgForeground.imageTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
                 // imgForeground.setTint(editTextForeground.text.toString())
-                cvBackground.setCardBackgroundColor(editTextBackground.text.toString().toColorInt())
+                binding.cvBackground.setCardBackgroundColor(binding.editTextBackground.text.toString().toColorInt())
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -110,9 +124,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderIcon(iconName: String) {
-        val bitmap = Bitmap.createBitmap(cvBackground.measuredWidth, cvBackground.measuredHeight, Bitmap.Config.ARGB_8888)
+        val bitmap = Bitmap.createBitmap(binding.cvBackground.measuredWidth, binding.cvBackground.measuredHeight, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
-        cvBackground.draw(canvas)
+        binding.cvBackground.draw(canvas)
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, File(templateIconPath, "$iconName.png").outputStream())
     }
 
@@ -140,7 +154,16 @@ class MainActivity : AppCompatActivity() {
     private fun checkInstallPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (!packageManager.canRequestPackageInstalls()) {
-                startActivityForResult(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(Uri.parse(String.format("package:%s", getPackageName()))), 1234);
+                startActivityForResult(
+                    Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(
+                        Uri.parse(
+                            String.format(
+                                "package:%s",
+                                getPackageName()
+                            )
+                        )
+                    ), 1234
+                );
             }
         }
     }
