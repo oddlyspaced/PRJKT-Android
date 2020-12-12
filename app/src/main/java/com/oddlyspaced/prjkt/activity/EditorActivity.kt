@@ -26,11 +26,15 @@ class EditorActivity : AppCompatActivity() {
         }
 
         binding.txEditorShape.setOnClickListener {
-            supportFragmentManager.beginTransaction().addToBackStack("shape").add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "tagShape").commit()
+            val transaction = supportFragmentManager.beginTransaction()
+            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            transaction.addToBackStack("shape").add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "tagShape").commit()
         }
 
         binding.txEditorSize.setOnClickListener {
-            supportFragmentManager.beginTransaction().addToBackStack("B").add(binding.frag.id, ResizeEditorFragment.newInstance(binding.imgIconBackground), "hi2").commit()
+            val transaction = supportFragmentManager.beginTransaction()
+            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            transaction.addToBackStack("size").add(binding.frag.id, ResizeEditorFragment.newInstance(binding.imgIconBackground), "tagSize").commit()
         }
 
         binding.imgIconBackground.setOnClickListener {
