@@ -59,6 +59,22 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
         binding.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvShapes.adapter = ShapeSelectAdapter(items)
 
+        binding.imgShapeRadiusReset.setOnClickListener {
+            background.cornerRadius = 50F
+            val ss = "50º"
+            binding.txShapeRadius.text = ss
+        }
+
+        binding.imgShapeRotationReset.setOnClickListener {
+            background.rotation = 45F
+            binding.txShapeRotation.text = "45º"
+        }
+
+        binding.imgShapeSidesReset.setOnClickListener {
+            background.numberOfSides = 3
+            binding.txShapeSides.text = "3"
+        }
+
         binding.sliderShapeRotation.addOnChangeListener { _, value, _ ->
             background.rotation = value
             val ss = "${value.toInt()}º"
