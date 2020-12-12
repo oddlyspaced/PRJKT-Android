@@ -6,6 +6,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
+import com.oddlyspaced.prjkt.fragment.ResizeEditorFragment
 import com.oddlyspaced.prjkt.fragment.ShapeEditorFragment
 
 class EditorActivity : AppCompatActivity() {
@@ -24,6 +25,17 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        supportFragmentManager.beginTransaction().add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "hi").commit()
+        binding.txEditorShape.setOnClickListener {
+            supportFragmentManager.beginTransaction().addToBackStack("shape").add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "tagShape").commit()
+        }
+
+        binding.txEditorSize.setOnClickListener {
+            supportFragmentManager.beginTransaction().addToBackStack("B").add(binding.frag.id, ResizeEditorFragment.newInstance(binding.imgIconBackground), "hi2").commit()
+        }
+
+        binding.imgIconBackground.setOnClickListener {
+            supportFragmentManager.popBackStack()
+        }
+
     }
 }
