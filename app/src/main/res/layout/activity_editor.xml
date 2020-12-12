@@ -38,4 +38,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/spotify"
+        app:layout_constraintBottom_toBottomOf="@+id/imgIconBackground"
+        app:layout_constraintEnd_toEndOf="@+id/imgIconBackground"
+        app:layout_constraintStart_toStartOf="@+id/imgIconBackground"
+        app:layout_constraintTop_toTopOf="@+id/imgIconBackground" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
