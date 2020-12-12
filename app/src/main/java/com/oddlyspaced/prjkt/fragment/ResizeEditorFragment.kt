@@ -22,8 +22,17 @@ class ResizeEditorFragment(val background: IconBackground) : Fragment() {
 
     private lateinit var binding: FragmentEditorResizeBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEditorResizeBinding.inflate(layoutInflater, container, false)
+
+        binding.sliderResizeWidth.addOnChangeListener { _, value, _ ->
+            background.scaleX = value
+        }
+
+        binding.sliderResizeHeight.addOnChangeListener { _, value, _ ->
+            background.scaleY = value
+        }
+
         return binding.root
     }
 
