@@ -140,11 +140,11 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/txShapeRadius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="100"
+                    android:text="0º"
                     android:textColor="#6B7485"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView"
@@ -201,11 +201,11 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/txShapeSides"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="100"
+                    android:text="3"
                     android:textColor="#6B7485"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
@@ -251,7 +251,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:value="100"
+                    android:value="45"
                     android:valueFrom="0"
                     android:valueTo="360"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -263,11 +263,11 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/txShapeRotation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="100"
+                    android:text="45"
                     android:textColor="#6B7485"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView4"

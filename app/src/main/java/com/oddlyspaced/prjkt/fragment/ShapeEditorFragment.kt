@@ -61,14 +61,18 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
 
         binding.sliderShapeRotation.addOnChangeListener { _, value, _ ->
             background.rotation = value
+            val ss = "${value.toInt()}º"
+            binding.txShapeRotation.text = ss
         }
 
         binding.sliderShapeRadius.addOnChangeListener { _, value, _ ->
             background.cornerRadius = value
+            binding.txShapeRadius.text = value.toInt().toString()
         }
 
         binding.sliderShapeSides.addOnChangeListener { _, value, _ ->
             background.numberOfSides = value.toInt()
+            binding.txShapeSides.text = value.toInt().toString()
         }
 
         return binding.root
