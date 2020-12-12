@@ -13,6 +13,9 @@ class EditorActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditorBinding
 
+    private lateinit var shapeEditorFragment: ShapeEditorFragment
+    private lateinit var resizeEditorFragment: ResizeEditorFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditorBinding.inflate(layoutInflater)
@@ -25,16 +28,19 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
+        shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
+        resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
+
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            transaction.addToBackStack("shape").add(binding.frag.id, ShapeEditorFragment.newInstance(binding.imgIconBackground), "tagShape").commit()
+            transaction.addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
         }
 
         binding.txEditorSize.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            transaction.addToBackStack("size").add(binding.frag.id, ResizeEditorFragment.newInstance(binding.imgIconBackground), "tagSize").commit()
+            transaction.addToBackStack("size").add(binding.frag.id, resizeEditorFragment, "tagSize").commit()
         }
 
         binding.imgIconBackground.setOnClickListener {
