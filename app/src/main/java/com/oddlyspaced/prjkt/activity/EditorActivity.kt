@@ -13,6 +13,7 @@ import androidx.core.graphics.drawable.toBitmap
 import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
 import com.oddlyspaced.prjkt.fragment.DesignEditorFragment
+import com.oddlyspaced.prjkt.fragment.MoveEditorFragment
 import com.oddlyspaced.prjkt.fragment.ResizeEditorFragment
 import com.oddlyspaced.prjkt.fragment.ShapeEditorFragment
 
@@ -23,6 +24,7 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var shapeEditorFragment: ShapeEditorFragment
     private lateinit var resizeEditorFragment: ResizeEditorFragment
     private lateinit var designEditorFragment: DesignEditorFragment
+    private lateinit var moveEditorFragment: MoveEditorFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,7 @@ class EditorActivity : AppCompatActivity() {
         shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
         resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
+        moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
 
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
@@ -56,6 +59,10 @@ class EditorActivity : AppCompatActivity() {
 
         binding.txEditorDesign.setOnClickListener {
             supportFragmentManager.beginTransaction().addToBackStack("design").add(binding.frag.id, designEditorFragment, "tagDesign").commit()
+        }
+
+        binding.txEditorMove.setOnClickListener {
+            supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, moveEditorFragment, "tagMove").commit()
         }
 
         binding.imgIconBackground.setOnClickListener {
