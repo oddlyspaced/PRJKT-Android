@@ -57,16 +57,27 @@ class ColorPickerFragment : Fragment() {
         binding.imgColorPicker.setImageBitmap(newLayer)
 
         binding.imgColorPicker.setOnTouchListener { view, motionEvent ->
-            try {
-                val pixel = newLayer.getPixel(motionEvent.x.toInt(), motionEvent.y.toInt())
-                Log.e("COLOR", motionEvent.x.toString() + ", " + motionEvent.y.toString())
-                binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
-                binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
-                // Log.e("COLOR", pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString())
+            var x = motionEvent.x.toInt()
+            if (x < 0) {
+                x = 0
             }
-            catch (e: Exception) {
+            if (x > newLayer.width - 1) {
+                x = newLayer.width - 1
+            }
 
+            var y = motionEvent.y.toInt()
+            if (y < 0) {
+                y = 0
             }
+            if (y > newLayer.height - 1) {
+                y = newLayer.height - 1
+            }
+
+            val pixel = newLayer.getPixel(x, y)
+            binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
+            binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
+            binding.viewIndicator.x = x.toFloat()
+            binding.viewIndicator.y = y.toFloat()
             true
         }
 
