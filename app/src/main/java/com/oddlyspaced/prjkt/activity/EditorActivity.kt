@@ -36,43 +36,43 @@ class EditorActivity : AppCompatActivity() {
 
         overlayDrawable()
 
-//        shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
-//        resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
-//
-//        val paint = Paint().apply {
-//            shader = LinearGradient(
-//                0F,
-//                0F,
-//                binding.imageView6.measuredWidth.toFloat(),
-//                0f,
-//                intArrayOf(Color.RED, Color.BLACK),
-//                floatArrayOf(0.0F, 0.5F),
-//                Shader.TileMode.CLAMP
-//            )
-//            color = ContextCompat.getColor(applicationContext, R.color.blue)
-//        }
-//
-//        binding.imageView6.setColorFilter(ContextCompat.getColor(applicationContext, R.color.blue))
-//
-//
-//
-//        // binding.imageView6.setLayerPaint(paint)
-//
-//        binding.txEditorShape.setOnClickListener {
-//            val transaction = supportFragmentManager.beginTransaction()
-//            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-//            transaction.addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
-//        }
-//
-//        binding.txEditorSize.setOnClickListener {
-//            val transaction = supportFragmentManager.beginTransaction()
-//            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-//            transaction.addToBackStack("size").add(binding.frag.id, resizeEditorFragment, "tagSize").commit()
-//        }
-//
-//        binding.imgIconBackground.setOnClickListener {
-//            supportFragmentManager.popBackStack()
-//        }
+        shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
+        resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
+
+        val paint = Paint().apply {
+            shader = LinearGradient(
+                0F,
+                0F,
+                binding.imageView6.measuredWidth.toFloat(),
+                0f,
+                intArrayOf(Color.RED, Color.BLACK),
+                floatArrayOf(0.0F, 0.5F),
+                Shader.TileMode.CLAMP
+            )
+            color = ContextCompat.getColor(applicationContext, R.color.blue)
+        }
+
+        binding.imageView6.setColorFilter(ContextCompat.getColor(applicationContext, R.color.blue))
+
+
+
+        // binding.imageView6.setLayerPaint(paint)
+
+        binding.txEditorShape.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            transaction.addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
+        }
+
+        binding.txEditorSize.setOnClickListener {
+            val transaction = supportFragmentManager.beginTransaction()
+            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            transaction.addToBackStack("size").add(binding.frag.id, resizeEditorFragment, "tagSize").commit()
+        }
+
+        binding.imgIconBackground.setOnClickListener {
+            supportFragmentManager.popBackStack()
+        }
 
     }
 
