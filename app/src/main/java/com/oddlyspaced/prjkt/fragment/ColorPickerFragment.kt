@@ -9,20 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.blue
+import androidx.core.graphics.*
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.green
-import androidx.core.graphics.red
-import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.*
 
-class ColorPickerFragment : Fragment() {
+class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
 
     companion object {
-        fun newInstance(): ColorPickerFragment {
-            return ColorPickerFragment()
+        fun newInstance(onColorChanged: (Int) -> Unit): ColorPickerFragment {
+            return ColorPickerFragment(onColorChanged)
         }
     }
 
@@ -103,12 +100,14 @@ class ColorPickerFragment : Fragment() {
             binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
             binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
             binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
+            onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
             true
         }
 
         val pixel = newLayer.getPixel(x, y)
         binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
         binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
+        onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
     }
 
 }
