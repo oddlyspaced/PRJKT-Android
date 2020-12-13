@@ -31,8 +31,22 @@ class ColorPickerFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
         bruh()
+        binding.sliderColorR.addOnChangeListener { _, value, _ ->
+            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        }
+
+        binding.sliderColorG.addOnChangeListener { _, value, _ ->
+            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        }
+
+        binding.sliderColorB.addOnChangeListener { _, value, _ ->
+            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        }
         return binding.root
     }
+
+    private var x = 0
+    private var y = 0
 
     private fun bruh() {
         Handler(Looper.getMainLooper()).postDelayed({
@@ -62,13 +76,8 @@ class ColorPickerFragment : Fragment() {
 
         binding.imgColorPicker.setImageDrawable(roundedBitmapDrawable)
 
-
-//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-//        final float roundPx = (float) bitmap.getWidth() * 0.06f;
-//        roundedBitmapDrawable.setCornerRadius(roundPx);
-
         binding.imgColorPicker.setOnTouchListener { view, motionEvent ->
-            var x = motionEvent.x.toInt()
+            x = motionEvent.x.toInt()
             if (x < 0) {
                 x = 0
             }
@@ -76,7 +85,7 @@ class ColorPickerFragment : Fragment() {
                 x = newLayer.width - 1
             }
 
-            var y = motionEvent.y.toInt()
+            y = motionEvent.y.toInt()
             if (y < 0) {
                 y = 0
             }
@@ -92,17 +101,9 @@ class ColorPickerFragment : Fragment() {
             true
         }
 
-        /*
-        if (paint == null) {
-			paint = new Paint();
-			luar = new LinearGradient(0.f, 0.f, 0.f, this.getMeasuredHeight(), 0xffffffff, 0xff000000, TileMode.CLAMP);
-		}
-		int rgb = Color.HSVToColor(color);
-		Shader dalam = new LinearGradient(0.f, 0.f, this.getMeasuredWidth(), 0.f, 0xffffffff, rgb, TileMode.CLAMP);
-		ComposeShader shader = new ComposeShader(luar, dalam, PorterDuff.Mode.MULTIPLY);
-		paint.setShader(shader);
-		canvas.drawRect(0.f, 0.f, this.getMeasuredWidth(), this.getMeasuredHeight(), paint);
-         */
+        val pixel = newLayer.getPixel(x, y)
+        binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
+        binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
     }
 
 }
