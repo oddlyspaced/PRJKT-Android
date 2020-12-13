@@ -38,7 +38,9 @@ class EditorActivity : AppCompatActivity() {
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
 
-        supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, ColorPickerFragment.newInstance(), "tagColorPicker").commit()
+        supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, ColorPickerFragment.newInstance { color ->
+            binding.imageView6.setColorFilter(color)
+        }, "tagColorPicker").commit()
 
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
