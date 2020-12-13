@@ -1,20 +1,16 @@
 package com.oddlyspaced.prjkt.activity
 
+import android.annotation.SuppressLint
 import android.graphics.*
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.alpha
-import androidx.core.graphics.blue
+import androidx.core.graphics.*
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
-import com.oddlyspaced.prjkt.fragment.DesignEditorFragment
-import com.oddlyspaced.prjkt.fragment.MoveEditorFragment
-import com.oddlyspaced.prjkt.fragment.ResizeEditorFragment
-import com.oddlyspaced.prjkt.fragment.ShapeEditorFragment
+import com.oddlyspaced.prjkt.fragment.*
 
 class EditorActivity : AppCompatActivity() {
 
@@ -37,13 +33,12 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        // overlayDrawable()
-        colorTest()
-
         shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
         resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
+
+        supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, ColorPickerFragment.newInstance(), "tagColorPicker").commit()
 
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
@@ -69,32 +64,6 @@ class EditorActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
         }
 
-    }
-
-    private fun colorTest() {
-        val sourceOriginal = binding.imageView6.drawable.toBitmap()
-        val newLayer = Bitmap.createBitmap(sourceOriginal.height, sourceOriginal.width, Bitmap.Config.ARGB_8888)
-        val paint = Paint()
-        val luar = LinearGradient(0F, 0F, 0F, newLayer.height.toFloat(), Color.WHITE, Color.BLACK, Shader.TileMode.CLAMP)
-        val rgb = Color.HSVToColor(floatArrayOf(1f, 1f, 1f))
-        val dalam = LinearGradient(0F, 0F, newLayer.width.toFloat(), 0F, Color.WHITE, rgb, Shader.TileMode.CLAMP)
-        val shader = ComposeShader(luar, dalam, PorterDuff.Mode.MULTIPLY)
-        paint.shader = shader
-        val canvas = Canvas(newLayer)
-        canvas.drawRect(0F, 0F, newLayer.width.toFloat(), newLayer.height.toFloat(), paint)
-        binding.imageView6.setImageBitmap(newLayer)
-
-        /*
-        if (paint == null) {
-			paint = new Paint();
-			luar = new LinearGradient(0.f, 0.f, 0.f, this.getMeasuredHeight(), 0xffffffff, 0xff000000, TileMode.CLAMP);
-		}
-		int rgb = Color.HSVToColor(color);
-		Shader dalam = new LinearGradient(0.f, 0.f, this.getMeasuredWidth(), 0.f, 0xffffffff, rgb, TileMode.CLAMP);
-		ComposeShader shader = new ComposeShader(luar, dalam, PorterDuff.Mode.MULTIPLY);
-		paint.setShader(shader);
-		canvas.drawRect(0.f, 0.f, this.getMeasuredWidth(), this.getMeasuredHeight(), paint);
-         */
     }
 
     private fun overlayDrawable() {
