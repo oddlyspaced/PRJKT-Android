@@ -19,12 +19,10 @@ class IconBackground @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private val polygonDrawingUtil = PolygonDrawingUtil()
-    private val polygonFillPaint = Paint(ANTI_ALIAS_FLAG)
-    private val polygonStrokePaint = Paint(ANTI_ALIAS_FLAG)
     private val strokePath = Path()
     private var strokeWidth = 0f
 
-    var numberOfSides = 3
+    var numberOfSides = 4
         set(numberOfSides) {
             field = numberOfSides
             invalidate()
@@ -36,7 +34,7 @@ class IconBackground @JvmOverloads constructor(
             invalidate()
         }
 
-    var polygonRotation = 0f
+    var polygonRotation = 45f
         set(polygonRotation) {
             field = polygonRotation
             invalidate()
@@ -48,11 +46,23 @@ class IconBackground @JvmOverloads constructor(
             invalidate()
         }
 
+    var polygonFillPaint = Paint(ANTI_ALIAS_FLAG)
+        set(polygonFillPaint) {
+            field = polygonFillPaint
+            invalidate()
+        }
+
+    var polygonStrokePaint = Paint(ANTI_ALIAS_FLAG)
+        set(polygonStrokePaint) {
+            field = polygonStrokePaint
+            invalidate()
+        }
+
     init {
         strokeWidth = 4F
 
         polygonFillPaint.apply {
-            color = ContextCompat.getColor(context, R.color.blue)
+            color = ContextCompat.getColor(context, R.color.black)
             style = Paint.Style.FILL
         }
 
