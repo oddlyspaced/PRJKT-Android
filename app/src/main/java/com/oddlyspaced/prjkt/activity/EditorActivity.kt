@@ -34,29 +34,10 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        overlayDrawable()
+        // overlayDrawable()
 
         shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
         resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
-
-        val paint = Paint().apply {
-            shader = LinearGradient(
-                0F,
-                0F,
-                binding.imageView6.measuredWidth.toFloat(),
-                0f,
-                intArrayOf(Color.RED, Color.BLACK),
-                floatArrayOf(0.0F, 0.5F),
-                Shader.TileMode.CLAMP
-            )
-            color = ContextCompat.getColor(applicationContext, R.color.blue)
-        }
-
-        binding.imageView6.setColorFilter(ContextCompat.getColor(applicationContext, R.color.blue))
-
-
-
-        // binding.imageView6.setLayerPaint(paint)
 
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
