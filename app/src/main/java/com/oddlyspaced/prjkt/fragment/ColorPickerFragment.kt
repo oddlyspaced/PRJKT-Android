@@ -31,16 +31,21 @@ class ColorPickerFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
         bruh()
+
+        binding.sliderColorA.addOnChangeListener { _, value, _ ->
+            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        }
+
         binding.sliderColorR.addOnChangeListener { _, value, _ ->
-            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
         }
 
         binding.sliderColorG.addOnChangeListener { _, value, _ ->
-            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
         }
 
         binding.sliderColorB.addOnChangeListener { _, value, _ ->
-            applyHue(Color.rgb(binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
         }
         return binding.root
     }
