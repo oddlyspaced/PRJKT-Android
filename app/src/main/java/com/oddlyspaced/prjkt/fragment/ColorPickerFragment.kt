@@ -76,8 +76,8 @@ class ColorPickerFragment : Fragment() {
             val pixel = newLayer.getPixel(x, y)
             binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
             binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
-            binding.viewIndicator.x = x.toFloat()
-            binding.viewIndicator.y = y.toFloat()
+            binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
+            binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
             true
         }
 
