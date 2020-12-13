@@ -117,9 +117,9 @@
 
                     <View
                         android:id="@+id/viewIndicator"
-                        android:layout_width="4dp"
-                        android:layout_height="4dp"
-                        android:background="#FFF" />
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/indicator" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
