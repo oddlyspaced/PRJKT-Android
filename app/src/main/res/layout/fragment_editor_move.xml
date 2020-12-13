@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="Design"
+                    android:text="Move"
                     android:textColor="#FFF"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView5"
