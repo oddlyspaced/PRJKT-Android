@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.blue
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.green
 import androidx.core.graphics.red
@@ -54,7 +55,17 @@ class ColorPickerFragment : Fragment() {
         paint.shader = shader
         val canvas = Canvas(newLayer)
         canvas.drawRect(0F, 0F, newLayer.width.toFloat(), newLayer.height.toFloat(), paint)
-        binding.imgColorPicker.setImageBitmap(newLayer)
+
+        val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, newLayer)
+        val roundPx = newLayer.width * 0.03F
+        roundedBitmapDrawable.cornerRadius = roundPx
+
+        binding.imgColorPicker.setImageDrawable(roundedBitmapDrawable)
+
+
+//        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+//        final float roundPx = (float) bitmap.getWidth() * 0.06f;
+//        roundedBitmapDrawable.setCornerRadius(roundPx);
 
         binding.imgColorPicker.setOnTouchListener { view, motionEvent ->
             var x = motionEvent.x.toInt()
