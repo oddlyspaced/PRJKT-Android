@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.*
 import androidx.core.graphics.drawable.toBitmap
 import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
@@ -99,7 +100,8 @@ class EditorActivity : AppCompatActivity() {
                 val pixelColorOriginal = sourceOriginal.getPixel(x, y)
                 // check if the pixel is not transparent
                 if (Color.alpha(pixelColorOriginal) != 0) {
-                    sourceOriginal.setPixel(x, y, newLayer.getPixel(x, y))
+                    val newPixel = newLayer.getPixel(x, y)
+                    sourceOriginal.setPixel(x, y, Color.argb(pixelColorOriginal.alpha, newPixel.red, newPixel.green, newPixel.blue))
                 }
             }
         }
