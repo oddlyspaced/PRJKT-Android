@@ -57,14 +57,6 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
                 background.numberOfSides = 8
                 background.cornerRadius = 50F
             },
-            ShapeItem( // testing for colors
-                false
-            ) {
-                background.polygonFillPaint.apply {
-                    color = ContextCompat.getColor(context!!, R.color.blue)
-                }
-                background.invalidate()
-            }
         )
         binding.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvShapes.adapter = ShapeSelectAdapter(items)
