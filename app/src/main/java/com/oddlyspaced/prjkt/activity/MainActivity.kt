@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         startActivity(Intent(applicationContext, EditorActivity::class.java))
 
-        template.deleteRecursively()
-
-        if (!template.exists()) {
-            copyTemplate()
-        }
-
-        if (!File(applicationContext.externalCacheDir!!.path, "keys").exists()) {
-            copyKeys()
-        }
-
-        checkInstallPermission()
-        setupOnClick()
+//        template.deleteRecursively()
+//
+//        if (!template.exists()) {
+//            copyTemplate()
+//        }
+//
+//        if (!File(applicationContext.externalCacheDir!!.path, "keys").exists()) {
+//            copyKeys()
+//        }
+//
+//        checkInstallPermission()
+//        setupOnClick()
     }
 
     private val icons = arrayListOf(
