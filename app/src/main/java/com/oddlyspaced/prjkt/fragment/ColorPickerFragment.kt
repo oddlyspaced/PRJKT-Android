@@ -67,8 +67,10 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
         val cards = arrayOf(binding.cardColorPickerRed, binding.cardColorPickerGreen, binding.cardColorPickerBlue, binding.cardColorPickerAlpha)
         cards.forEach {
             it.strokeColor = ContextCompat.getColor(context!!, com.oddlyspaced.prjkt.R.color.background_light)
+            it.invalidate()
         }
         cards[active].strokeColor = ContextCompat.getColor(context!!, com.oddlyspaced.prjkt.R.color.blue)
+        cards[active].invalidate()
     }
 
     private var x = 0
