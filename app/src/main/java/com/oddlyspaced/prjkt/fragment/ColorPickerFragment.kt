@@ -122,8 +122,8 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
             }
 
             val pixel = newLayer.getPixel(x, y)
-            binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
-            binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
+            val hex = String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
+            binding.txColorPickerHex.text = hex
             binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
             binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
             onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
@@ -131,8 +131,8 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
         }
 
         val pixel = newLayer.getPixel(x, y)
-        binding.txColorPickerHex.text = pixel.red.toString() + ", " + pixel.green.toString() + ", " + pixel.blue.toString()
-        binding.txColorPickerHex.setTextColor(Color.rgb(pixel.red, pixel.green, pixel.blue))
+        val hex = String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
+        binding.txColorPickerHex.text = hex
         onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
     }
 

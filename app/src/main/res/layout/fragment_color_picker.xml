@@ -276,6 +276,17 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="#"
+                    android:textColor="#FFF"
+                    app:layout_constraintBottom_toBottomOf="@+id/txColorPickerHex"
+                    app:layout_constraintEnd_toStartOf="@+id/txColorPickerHex"
+                    app:layout_constraintTop_toTopOf="@+id/txColorPickerHex" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
