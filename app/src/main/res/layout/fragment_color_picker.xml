@@ -96,6 +96,25 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView16" />
 
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderColorPicker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:stepSize="1"
+                    android:value="0"
+                    android:valueFrom="0"
+                    android:valueTo="255"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardColorPickerRed"
+                    app:thumbColor="#FFF"
+                    app:trackColorActive="#317AFF"
+                    app:trackColorInactive="#000"
+                    app:trackHeight="8dp" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout11"
                     android:layout_width="match_parent"
@@ -126,125 +145,137 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/textView19"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardColorPickerRed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:text="RED"
-                    android:textColor="#FFF"
+                    app:cardBackgroundColor="#13161B"
+                    app:layout_constraintEnd_toStartOf="@+id/cardColorPickerGreen"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+                    app:strokeColor="@color/blue"
+                    app:strokeWidth="2dp">
 
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderColorR"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:stepSize="1"
-                    android:value="0"
-                    android:valueFrom="0"
-                    android:valueTo="255"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19"
-                    app:thumbColor="#FFF"
-                    app:trackColorActive="#317AFF"
-                    app:trackColorInactive="#000"
-                    app:trackHeight="8dp" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView20"
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="RED"
+                            android:textColor="#FFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardColorPickerGreen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:text="GREEN"
-                    android:textColor="#FFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sliderColorR" />
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="#13161B"
+                    app:layout_constraintEnd_toStartOf="@+id/cardColorPickerBlue"
+                    app:layout_constraintStart_toEndOf="@+id/cardColorPickerRed"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+                    app:strokeColor="@color/background_light"
+                    app:strokeWidth="2dp">
 
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderColorG"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:stepSize="1"
-                    android:value="0"
-                    android:valueFrom="0"
-                    android:valueTo="255"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20"
-                    app:thumbColor="#FFF"
-                    app:trackColorActive="#317AFF"
-                    app:trackColorInactive="#000"
-                    app:trackHeight="8dp" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView21"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="GREEN"
+                            android:textColor="#FFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardColorPickerBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:text="BLUE"
-                    android:textColor="#FFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sliderColorG" />
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="#13161B"
+                    app:layout_constraintEnd_toStartOf="@+id/cardColorPickerAlpha"
+                    app:layout_constraintStart_toEndOf="@+id/cardColorPickerGreen"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+                    app:strokeColor="@color/background_light"
+                    app:strokeWidth="2dp">
 
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderColorB"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:stepSize="1"
-                    android:value="0"
-                    android:valueFrom="0"
-                    android:valueTo="255"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21"
-                    app:thumbColor="#FFF"
-                    app:trackColorActive="#317AFF"
-                    app:trackColorInactive="#000"
-                    app:trackHeight="8dp" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textView22"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="BLUE"
+                            android:textColor="#FFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardColorPickerAlpha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:text="ALPHA"
-                    android:textColor="#FFF"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sliderColorB" />
-
-                <com.google.android.material.slider.Slider
-                    android:id="@+id/sliderColorA"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:stepSize="1"
-                    android:value="0"
-                    android:valueFrom="0"
-                    android:valueTo="255"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardBackgroundColor="#13161B"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView22"
-                    app:thumbColor="#FFF"
-                    app:trackColorActive="#317AFF"
-                    app:trackColorInactive="#000"
-                    app:trackHeight="8dp" />
+                    app:layout_constraintStart_toEndOf="@+id/cardColorPickerBlue"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+                    app:strokeColor="@color/background_light"
+                    app:strokeWidth="2dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="ALPHA"
+                            android:textColor="#FFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

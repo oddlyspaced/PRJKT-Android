@@ -5,13 +5,12 @@ import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.*
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.*
 
@@ -25,26 +24,51 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
 
     private lateinit var binding: FragmentColorPickerBinding
 
+    private var R = 0
+    private var G = 0
+    private var B = 0
+    private var A = 0
+    private var active = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
         bruh()
 
-        binding.sliderColorA.addOnChangeListener { _, value, _ ->
-            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        val cards = arrayOf(binding.cardColorPickerRed, binding.cardColorPickerGreen, binding.cardColorPickerBlue, binding.cardColorPickerAlpha)
+
+        cards.forEachIndexed { index, card ->
+            card.setOnClickListener {
+                active = index
+                activateCard()
+                binding.sliderColorPicker.value = when(active) {
+                    0 -> R
+                    1 -> G
+                    2 -> B
+                    3 -> A
+                    else -> R
+                }.toFloat()
+            }
         }
 
-        binding.sliderColorR.addOnChangeListener { _, value, _ ->
-            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
+        binding.sliderColorPicker.addOnChangeListener { _, value, _ ->
+            when (active) {
+                0 -> R = value.toInt()
+                1 -> G = value.toInt()
+                2 -> B = value.toInt()
+                3 -> A = value.toInt()
+            }
+            applyHue(Color.argb(A, R, G, B))
         }
 
-        binding.sliderColorG.addOnChangeListener { _, value, _ ->
-            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
-        }
-
-        binding.sliderColorB.addOnChangeListener { _, value, _ ->
-            applyHue(Color.argb(binding.sliderColorA.value.toInt(), binding.sliderColorR.value.toInt(), binding.sliderColorG.value.toInt(), binding.sliderColorB.value.toInt()))
-        }
         return binding.root
+    }
+
+    private fun activateCard() {
+        val cards = arrayOf(binding.cardColorPickerRed, binding.cardColorPickerGreen, binding.cardColorPickerBlue, binding.cardColorPickerAlpha)
+        cards.forEach {
+            it.strokeColor = ContextCompat.getColor(context!!, com.oddlyspaced.prjkt.R.color.background_light)
+        }
+        cards[active].strokeColor = ContextCompat.getColor(context!!, com.oddlyspaced.prjkt.R.color.blue)
     }
 
     private var x = 0
