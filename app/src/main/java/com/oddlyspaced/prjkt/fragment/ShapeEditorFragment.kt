@@ -25,6 +25,9 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
+        binding.imageView.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
         val items = arrayListOf(
             ShapeItem( // circle
                 false

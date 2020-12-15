@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/imgFillForegroundBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -45,9 +45,9 @@
                     android:text="Fill"
                     android:textColor="#FFF"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-                    app:layout_constraintStart_toEndOf="@+id/imageView8"
-                    app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                    app:layout_constraintBottom_toBottomOf="@+id/imgFillForegroundBack"
+                    app:layout_constraintStart_toEndOf="@+id/imgFillForegroundBack"
+                    app:layout_constraintTop_toTopOf="@+id/imgFillForegroundBack" />
 
                 <View
                     android:id="@+id/view6"
@@ -88,6 +88,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFF"
                     app:cardCornerRadius="6dp"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"

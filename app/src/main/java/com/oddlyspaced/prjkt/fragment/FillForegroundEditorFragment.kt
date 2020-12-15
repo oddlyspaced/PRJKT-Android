@@ -21,6 +21,10 @@ class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : F
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFillForegroundBinding.inflate(layoutInflater, container, false)
 
+        binding.imgFillForegroundBack.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
+
         binding.cvFillForegroundColor.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("move")?.add(root, ColorPickerFragment.newInstance { color ->
                 foreground.setColorFilter(color)

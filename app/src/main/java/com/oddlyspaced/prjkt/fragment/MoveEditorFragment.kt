@@ -28,6 +28,10 @@ class MoveEditorFragment(val foreground: ImageView) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEditorMoveBinding.inflate(layoutInflater, container, false)
 
+        binding.imageView5.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
+
         val originalX = foreground.x
         val originalY = foreground.y
 

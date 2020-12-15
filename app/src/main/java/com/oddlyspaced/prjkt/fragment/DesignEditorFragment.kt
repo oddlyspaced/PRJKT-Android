@@ -27,6 +27,10 @@ class DesignEditorFragment(val foreground: ImageView) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEditorDesignBinding.inflate(layoutInflater, container, false)
 
+        binding.imageView4.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
+
         binding.sliderDesignSize.addOnChangeListener { _, value, _ ->
             foreground.scaleX = value
             foreground.scaleY = value

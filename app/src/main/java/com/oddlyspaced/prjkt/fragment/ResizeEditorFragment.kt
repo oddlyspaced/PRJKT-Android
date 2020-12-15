@@ -25,6 +25,10 @@ class ResizeEditorFragment(val background: IconBackground) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEditorResizeBinding.inflate(layoutInflater, container, false)
 
+        binding.imageView3.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
+
         binding.sliderResizeWidth.addOnChangeListener { _, value, _ ->
             background.scaleX = value
         }

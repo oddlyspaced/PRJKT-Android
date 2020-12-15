@@ -34,6 +34,10 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
         bruh()
 
+        binding.imageView7.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
+
         val cards = arrayOf(binding.cardColorPickerRed, binding.cardColorPickerGreen, binding.cardColorPickerBlue, binding.cardColorPickerAlpha)
 
         cards.forEachIndexed { index, card ->
