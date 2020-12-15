@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -131,9 +132,11 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
             val pixel = newLayer.getPixel(x, y)
             val hex = String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
             binding.txColorPickerHex.text = hex
-            binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
-            binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
-            onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
+            binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width / 2)
+            binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height / 2)
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
+                onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
+            }
             true
         }
 
