@@ -40,11 +40,9 @@ class EditorActivity : AppCompatActivity() {
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
         fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6)
-        
+
         binding.txEditorShape.setOnClickListener {
-            val transaction = supportFragmentManager.beginTransaction()
-            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            transaction.addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
+            supportFragmentManager.beginTransaction().addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
         }
 
         binding.txEditorSize.setOnClickListener {
