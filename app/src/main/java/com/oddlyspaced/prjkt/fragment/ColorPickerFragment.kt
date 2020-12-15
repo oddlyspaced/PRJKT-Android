@@ -9,10 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.*
+import androidx.core.graphics.alpha
+import androidx.core.graphics.blue
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
-import com.oddlyspaced.prjkt.databinding.*
+import com.oddlyspaced.prjkt.databinding.FragmentColorPickerBinding
 
 class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
 

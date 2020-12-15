@@ -1,14 +1,15 @@
 package com.oddlyspaced.prjkt.activity
 
-import android.annotation.SuppressLint
 import android.graphics.*
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.*
+import androidx.core.graphics.alpha
+import androidx.core.graphics.blue
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
 import com.oddlyspaced.prjkt.fragment.*
 

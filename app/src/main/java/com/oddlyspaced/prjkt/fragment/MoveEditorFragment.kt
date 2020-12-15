@@ -6,14 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.oddlyspaced.prjkt.adapter.ShapeSelectAdapter
-import com.oddlyspaced.prjkt.databinding.FragmentEditorDesignBinding
 import com.oddlyspaced.prjkt.databinding.FragmentEditorMoveBinding
-import com.oddlyspaced.prjkt.databinding.FragmentEditorResizeBinding
-import com.oddlyspaced.prjkt.databinding.FragmentEditorShapeBinding
-import com.oddlyspaced.prjkt.external.IconBackground
-import com.oddlyspaced.prjkt.modal.ShapeItem
 
 class MoveEditorFragment(val foreground: ImageView) : Fragment() {
 
