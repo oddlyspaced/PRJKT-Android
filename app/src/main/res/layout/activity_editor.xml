@@ -11,10 +11,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/txEditorShape"
@@ -107,6 +107,7 @@
         android:layout_marginBottom="16dp"
         android:text="Indicator"
         android:textColor="#FFF"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/frag"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -143,7 +144,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="72dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

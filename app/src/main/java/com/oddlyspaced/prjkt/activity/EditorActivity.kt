@@ -40,10 +40,7 @@ class EditorActivity : AppCompatActivity() {
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
         fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6)
-
-        supportFragmentManager.beginTransaction().addToBackStack("fillForeground")
-            .add(binding.frag.id, FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6), "tagForegroundFill").commit()
-
+        
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)

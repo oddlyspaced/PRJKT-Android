@@ -67,7 +67,7 @@ class IconBackground @JvmOverloads constructor(
         }
 
         polygonStrokePaint.apply {
-            color = ContextCompat.getColor(context, R.color.blue)
+            color = ContextCompat.getColor(context, R.color.black)
             strokeWidth = this@IconBackground.strokeWidth
             style = Paint.Style.STROKE
         }
