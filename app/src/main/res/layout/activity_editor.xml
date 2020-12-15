@@ -10,11 +10,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline4">
 
         <TextView
             android:id="@+id/txEditorShape"
@@ -85,6 +85,18 @@
             app:layout_constraintBottom_toBottomOf="@+id/txEditorDesign"
             app:layout_constraintStart_toEndOf="@+id/txEditorDesign"
             app:layout_constraintTop_toTopOf="@+id/txEditorDesign" />
+
+        <TextView
+            android:id="@+id/txEditorForegroundFill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Fill"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txEditorMove"
+            app:layout_constraintStart_toEndOf="@+id/txEditorMove"
+            app:layout_constraintTop_toTopOf="@+id/txEditorMove" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -116,15 +128,22 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
     <com.oddlyspaced.prjkt.external.IconBackground
         android:id="@+id/imgIconBackground"
-        android:visibility="invisible"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="72dp"
         android:layout_marginBottom="72dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

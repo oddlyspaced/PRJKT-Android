@@ -20,6 +20,7 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var resizeEditorFragment: ResizeEditorFragment
     private lateinit var designEditorFragment: DesignEditorFragment
     private lateinit var moveEditorFragment: MoveEditorFragment
+    private lateinit var fillForegroundEditorFragment: FillForegroundEditorFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +38,10 @@ class EditorActivity : AppCompatActivity() {
         resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
         designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
+        fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6)
 
-        supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, ColorPickerFragment.newInstance { color ->
-            binding.imageView6.setColorFilter(color)
-        }, "tagColorPicker").commit()
+        supportFragmentManager.beginTransaction().addToBackStack("fillForeground")
+            .add(binding.frag.id, FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6), "tagForegroundFill").commit()
 
         binding.txEditorShape.setOnClickListener {
             val transaction = supportFragmentManager.beginTransaction()
@@ -60,6 +61,10 @@ class EditorActivity : AppCompatActivity() {
 
         binding.txEditorMove.setOnClickListener {
             supportFragmentManager.beginTransaction().addToBackStack("move").add(binding.frag.id, moveEditorFragment, "tagMove").commit()
+        }
+
+        binding.txEditorForegroundFill.setOnClickListener {
+            supportFragmentManager.beginTransaction().addToBackStack("foregroundFill").add(binding.frag.id, fillForegroundEditorFragment, "tagForegroundFill").commit()
         }
 
         binding.imgIconBackground.setOnClickListener {
