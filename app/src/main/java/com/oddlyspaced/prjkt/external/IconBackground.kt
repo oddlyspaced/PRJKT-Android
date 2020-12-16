@@ -59,7 +59,7 @@ class IconBackground @JvmOverloads constructor(
         }
 
     init {
-        strokeWidth = 4F
+        strokeWidth = 0F
 
         polygonFillPaint.apply {
             color = ContextCompat.getColor(context, R.color.black)
