@@ -162,6 +162,18 @@
             app:layout_constraintBottom_toBottomOf="@+id/txEditorMove"
             app:layout_constraintStart_toEndOf="@+id/txEditorMove"
             app:layout_constraintTop_toTopOf="@+id/txEditorMove" />
+
+        <TextView
+            android:id="@+id/txEditorBackgroundFill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Fill"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txEditorSize"
+            app:layout_constraintStart_toEndOf="@+id/txEditorSize"
+            app:layout_constraintTop_toTopOf="@+id/txEditorSize" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
