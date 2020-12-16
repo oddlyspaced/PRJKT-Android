@@ -32,6 +32,7 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
 
         binding.cvFillBackgroundColor.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorBackgroundStart")?.add(root, ColorPickerFragment.newInstance { color ->
+                binding.cvFillBackgroundColor.setCardBackgroundColor(color)
                 startColor = color
                 setGradient()
             }, "tagColorPicker")?.commit()
@@ -39,6 +40,7 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
 
         binding.cvFillBackgroundColor2.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorBackgroundEnd")?.add(root, ColorPickerFragment.newInstance { color ->
+                binding.cvFillBackgroundColor2.setCardBackgroundColor(color)
                 endColor = color
                 setGradient()
             }, "tagColorPicker")?.commit()
