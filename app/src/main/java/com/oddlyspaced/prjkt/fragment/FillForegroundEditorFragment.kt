@@ -8,11 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.graphics.alpha
-import androidx.core.graphics.blue
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentFillForegroundBinding
 
@@ -31,6 +27,7 @@ class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : F
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFillForegroundBinding.inflate(layoutInflater, container, false)
+
 
         binding.imgFillForegroundBack.setOnClickListener {
             fragmentManager?.popBackStack()
@@ -63,35 +60,22 @@ class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : F
         binding.cvFillForegroundColor.setCardBackgroundColor(startColor)
         binding.cvFillForegroundColor2.setCardBackgroundColor(endColor)
 
-        val sourceOriginal = foreground.drawable.toBitmap()
-        val newLayer = Bitmap.createBitmap(sourceOriginal.height, sourceOriginal.width, Bitmap.Config.ARGB_8888)
+        val sourceLayer = foreground.drawable.toBitmap()
+        val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
+        val canvasOverlay = Canvas(overlayLayer)
+        canvasOverlay.drawColor(Color.RED)
+
+        val mergedLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
+        val canvasMerged = Canvas(mergedLayer)
+
+        canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
+
         val paint = Paint()
-        // paint.color = Color.RED
-        paint.shader = LinearGradient(
-            0F,
-            0F,
-            0F,
-            sourceOriginal.height.toFloat(),
-            startColor,
-            endColor,
-            Shader.TileMode.CLAMP
-        )
-        val canvas = Canvas(newLayer)
-        //canvas.drawColor(Color.RED)
-        canvas.drawPaint(paint)
-        // binding.imageView6.setImageBitmap(newLayer)
-        // At this point newLayer has the base map from which we need to cutout sourceOriginal path
-        for (y in 0 until sourceOriginal.height) {
-            for (x in 0 until sourceOriginal.width) {
-                val pixelColorOriginal = sourceOriginal.getPixel(x, y)
-                // check if the pixel is not transparent
-                if (Color.alpha(pixelColorOriginal) != 0) {
-                    val newPixel = newLayer.getPixel(x, y)
-                    sourceOriginal.setPixel(x, y, Color.argb(pixelColorOriginal.alpha, newPixel.red, newPixel.green, newPixel.blue))
-                }
-            }
-        }
-        foreground.setImageBitmap(sourceOriginal)
+        paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor, endColor, Shader.TileMode.CLAMP)
+        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+        canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
+
+        foreground.setImageBitmap(mergedLayer)
     }
 
 }
