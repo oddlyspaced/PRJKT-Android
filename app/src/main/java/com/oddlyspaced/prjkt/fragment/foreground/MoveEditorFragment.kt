@@ -1,4 +1,4 @@
-package com.oddlyspaced.prjkt.fragment
+package com.oddlyspaced.prjkt.fragment.foreground
 
 import android.os.Bundle
 import android.view.LayoutInflater

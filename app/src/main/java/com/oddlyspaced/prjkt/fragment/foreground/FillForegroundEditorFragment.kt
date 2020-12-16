@@ -1,4 +1,4 @@
-package com.oddlyspaced.prjkt.fragment
+package com.oddlyspaced.prjkt.fragment.foreground
 
 import android.graphics.*
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentFillForegroundBinding
+import com.oddlyspaced.prjkt.fragment.ColorPickerFragment
 
 class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : Fragment() {
 

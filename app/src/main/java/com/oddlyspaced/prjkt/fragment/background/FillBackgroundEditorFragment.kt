@@ -1,22 +1,14 @@
-package com.oddlyspaced.prjkt.fragment
+package com.oddlyspaced.prjkt.fragment.background
 
 import android.graphics.*
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.graphics.alpha
-import androidx.core.graphics.blue
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentFillBackgroundBinding
-import com.oddlyspaced.prjkt.databinding.FragmentFillForegroundBinding
 import com.oddlyspaced.prjkt.external.IconBackground
+import com.oddlyspaced.prjkt.fragment.ColorPickerFragment
 
 class FillBackgroundEditorFragment(val root: Int, val background: IconBackground) : Fragment() {
 

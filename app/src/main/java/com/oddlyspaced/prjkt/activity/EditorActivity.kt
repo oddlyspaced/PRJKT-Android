@@ -11,7 +11,12 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.green
 import androidx.core.graphics.red
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
-import com.oddlyspaced.prjkt.fragment.*
+import com.oddlyspaced.prjkt.fragment.background.FillBackgroundEditorFragment
+import com.oddlyspaced.prjkt.fragment.background.ResizeEditorFragment
+import com.oddlyspaced.prjkt.fragment.background.ShapeEditorFragment
+import com.oddlyspaced.prjkt.fragment.foreground.DesignEditorFragment
+import com.oddlyspaced.prjkt.fragment.foreground.FillForegroundEditorFragment
+import com.oddlyspaced.prjkt.fragment.foreground.MoveEditorFragment
 
 class EditorActivity : AppCompatActivity() {
 
