@@ -1,6 +1,7 @@
 package com.oddlyspaced.prjkt.fragment.background
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,78 +21,101 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
     }
 
     private lateinit var binding: FragmentEditorShapeBinding
+    private var radius = 0F
+    private var sides = 360
+    private var rotation = 45F
+    private var active = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentEditorShapeBinding.inflate(layoutInflater, container, false)
         binding.imageView.setOnClickListener {
             fragmentManager?.popBackStack()
         }
+
+        Log.e("Properties", "$radius, $sides, $rotation")
+
+        applyProperties()
+
         val items = arrayListOf(
             ShapeItem( // circle
                 false
             ) {
+                active = 0
+                sides = 360
+                radius = 360F
+                applyProperties()
                 hideRadiusSection()
                 hideSidesSection()
-                background.cornerRadius = 360F
-            },
-            ShapeItem( // square
-                false
-            ) {
-                hideRadiusSection()
-                hideSidesSection()
-                background.numberOfSides = 4
-                background.cornerRadius = 0F
             },
             ShapeItem( // oval
                 false
             ) {
+                active = 1
+                sides = 4
+                radius = 50F
+                applyProperties()
                 hideSidesSection()
                 showRadiusSection()
-                background.numberOfSides = 4
-                background.cornerRadius = 50F
             },
             ShapeItem( // polygon
                 false
             ) {
+                active = 2
+                sides = 8
+                radius = 50F
+                applyProperties()
                 showRadiusSection()
                 showSidesSection()
-                background.numberOfSides = 8
-                background.cornerRadius = 50F
             },
         )
+        items[active].isActive = true
         binding.rvShapes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvShapes.adapter = ShapeSelectAdapter(items)
 
         binding.imgShapeRadiusReset.setOnClickListener {
-            background.cornerRadius = 50F
-            val ss = "50º"
-            binding.txShapeRadius.text = ss
+            radius = 50F
+            applyProperties()
         }
 
         binding.imgShapeRotationReset.setOnClickListener {
-            background.rotation = 45F
-            binding.txShapeRotation.text = "45º"
+            rotation = 45F
+            applyProperties()
         }
 
         binding.imgShapeSidesReset.setOnClickListener {
-            background.numberOfSides = 3
-            binding.txShapeSides.text = "3"
+            sides = 3
+            applyProperties()
         }
 
         binding.sliderShapeRotation.addOnChangeListener { _, value, _ ->
-            background.rotation = value
-            val ss = "${value.toInt()}º"
-            binding.txShapeRotation.text = ss
+            rotation = value
+            applyProperties()
         }
 
         binding.sliderShapeRadius.addOnChangeListener { _, value, _ ->
-            background.cornerRadius = value
-            binding.txShapeRadius.text = value.toInt().toString()
+            radius = value
+            applyProperties()
         }
 
         binding.sliderShapeSides.addOnChangeListener { _, value, _ ->
-            background.numberOfSides = value.toInt()
-            binding.txShapeSides.text = value.toInt().toString()
+            sides = value.toInt()
+            applyProperties()
+        }
+
+        applyProperties()
+        when {
+            items[0].isActive -> {
+                hideRadiusSection()
+                hideSidesSection()
+            }
+            items[1].isActive -> {
+                hideSidesSection()
+                showRadiusSection()
+            }
+            items[2].isActive -> {
+                showRadiusSection()
+                showSidesSection()
+            }
         }
 
         return binding.root
@@ -111,6 +135,12 @@ class ShapeEditorFragment(val background: IconBackground) : Fragment() {
 
     private fun hideSidesSection() {
         binding.consShapeSides.visibility = View.GONE
+    }
+
+    private fun applyProperties() {
+        background.cornerRadius = radius
+        background.numberOfSides = sides
+        background.polygonRotation = rotation
     }
 
 }
