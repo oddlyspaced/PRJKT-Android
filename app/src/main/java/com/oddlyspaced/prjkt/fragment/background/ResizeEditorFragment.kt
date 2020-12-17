@@ -1,18 +1,20 @@
 package com.oddlyspaced.prjkt.fragment.background
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentEditorResizeBinding
 import com.oddlyspaced.prjkt.external.IconBackground
+import com.oddlyspaced.prjkt.modal.IconProperties
 
-class ResizeEditorFragment(val background: IconBackground) : Fragment() {
+class ResizeEditorFragment(private val background: IconBackground, private val properties: IconProperties) : Fragment() {
 
     companion object {
-        fun newInstance(img: IconBackground): ResizeEditorFragment {
-            return ResizeEditorFragment(img)
+        fun newInstance(img: IconBackground, properties: IconProperties): ResizeEditorFragment {
+            return ResizeEditorFragment(img, properties)
         }
     }
 
@@ -27,10 +29,12 @@ class ResizeEditorFragment(val background: IconBackground) : Fragment() {
 
         binding.sliderResizeWidth.addOnChangeListener { _, value, _ ->
             background.scaleX = value
+            properties.backgroundWidth = value
         }
 
         binding.sliderResizeHeight.addOnChangeListener { _, value, _ ->
             background.scaleY = value
+            properties.backgroundHeight = value
         }
 
         return binding.root
