@@ -94,6 +94,10 @@ class EditorActivity : AppCompatActivity() {
             supportFragmentManager.popBackStack()
         }
 
+        binding.cardView.setOnClickListener {
+            binding.imgIconForeground.setImageResource(resources.getIdentifier("chrome", "drawable", applicationContext.packageName))
+            FillForegroundEditorFragment.generateGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
+        }
     }
 
 }
