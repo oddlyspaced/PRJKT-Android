@@ -78,37 +78,4 @@ class EditorActivity : AppCompatActivity() {
 
     }
 
-    private fun overlayDrawable() {
-        val sourceOriginal = binding.imgIconForeground.drawable.toBitmap()
-        val newLayer = Bitmap.createBitmap(sourceOriginal.height, sourceOriginal.width, Bitmap.Config.ARGB_8888)
-        val paint = Paint()
-        // paint.color = Color.RED
-        paint.shader = LinearGradient(
-            0F,
-            0F,
-            0F,
-            sourceOriginal.height.toFloat(),
-            Color.RED,
-            Color.GREEN,
-            Shader.TileMode.CLAMP
-        )
-        val canvas = Canvas(newLayer)
-        //canvas.drawColor(Color.RED)
-        canvas.drawPaint(paint)
-        // binding.imgIconForeground.setImageBitmap(newLayer)
-        // At this point newLayer has the base map from which we need to cutout sourceOriginal path
-        for (y in 0 until sourceOriginal.height) {
-            for (x in 0 until sourceOriginal.width) {
-                val pixelColorOriginal = sourceOriginal.getPixel(x, y)
-                // check if the pixel is not transparent
-                if (Color.alpha(pixelColorOriginal) != 0) {
-                    val newPixel = newLayer.getPixel(x, y)
-                    sourceOriginal.setPixel(x, y, Color.argb(pixelColorOriginal.alpha, newPixel.red, newPixel.green, newPixel.blue))
-                }
-            }
-        }
-        binding.imgIconForeground.setImageBitmap(sourceOriginal)
-    }
-
-
 }
