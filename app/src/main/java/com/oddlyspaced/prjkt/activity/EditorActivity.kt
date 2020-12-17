@@ -2,6 +2,7 @@ package com.oddlyspaced.prjkt.activity
 
 import android.graphics.*
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.oddlyspaced.prjkt.fragment.background.ShapeEditorFragment
 import com.oddlyspaced.prjkt.fragment.foreground.DesignEditorFragment
 import com.oddlyspaced.prjkt.fragment.foreground.FillForegroundEditorFragment
 import com.oddlyspaced.prjkt.fragment.foreground.MoveEditorFragment
+import com.oddlyspaced.prjkt.modal.IconProperties
 
 class EditorActivity : AppCompatActivity() {
 
@@ -28,6 +30,22 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var moveEditorFragment: MoveEditorFragment
     private lateinit var fillForegroundEditorFragment: FillForegroundEditorFragment
     private lateinit var fillBackgroundEditorFragment: FillBackgroundEditorFragment
+
+    private val iconProperties = IconProperties(
+        backgroundRadius = 120F,
+        backgroundSides = 4,
+        backgroundRotation = 45F,
+        backgroundWidth = 1F,
+        backgroundHeight = 1F,
+        backgroundStartColor = "#FFFFFFFF",
+        backgroundEndColor = "#FFFFFFFFF",
+        foregroundSize = 1F,
+        foregroundMoveX = 0F,
+        foregroundMoveY = 0F,
+        foregroundRotate = 0F,
+        foregroundStartColor = "#FFFFFFFF",
+        foregroundEndColor = "#FFFFFFFF",
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +59,12 @@ class EditorActivity : AppCompatActivity() {
             statusBarColor = Color.TRANSPARENT
         }
 
-        shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
-        resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
-        designEditorFragment = DesignEditorFragment.newInstance(binding.imgIconForeground)
-        moveEditorFragment = MoveEditorFragment.newInstance(binding.imgIconForeground)
-        fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imgIconForeground)
-        fillBackgroundEditorFragment = FillBackgroundEditorFragment.newInstance(binding.frag.id, binding.imgIconBackground)
+        shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground, iconProperties)
+        resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground, iconProperties)
+        designEditorFragment = DesignEditorFragment.newInstance(binding.imgIconForeground, iconProperties)
+        moveEditorFragment = MoveEditorFragment.newInstance(binding.imgIconForeground, iconProperties)
+        fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imgIconForeground, iconProperties)
+        fillBackgroundEditorFragment = FillBackgroundEditorFragment.newInstance(binding.frag.id, binding.imgIconBackground, iconProperties)
 
         binding.txEditorShape.setOnClickListener {
             supportFragmentManager.beginTransaction().addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
