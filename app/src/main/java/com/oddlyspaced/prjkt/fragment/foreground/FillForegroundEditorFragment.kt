@@ -24,22 +24,21 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         }
     }
 
-    private var startColor: String = "#FF000000"
-    private var endColor: String = "#FF000000"
-
     private lateinit var binding: FragmentFillForegroundBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentFillForegroundBinding.inflate(layoutInflater, container, false)
 
-
         binding.imgFillForegroundBack.setOnClickListener {
             fragmentManager?.popBackStack()
         }
 
+        binding.cvFillForegroundColor.setCardBackgroundColor(properties.foregroundStartColor.toColorInt())
+        binding.cvFillForegroundColor2.setCardBackgroundColor(properties.foregroundEndColor.toColorInt())
+
         binding.cvFillForegroundColor.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundStart")?.add(root, ColorPickerFragment.newInstance { color ->
-                startColor = color
+                properties.foregroundStartColor = color
                 Handler(Looper.getMainLooper()).postDelayed({
                     generateGradient()
                 }, -2000)
@@ -49,7 +48,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
 
         binding.cvFillForegroundColor2.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundEnd")?.add(root, ColorPickerFragment.newInstance { color ->
-                endColor = color
+                properties.foregroundEndColor = color
                 Handler(Looper.getMainLooper()).postDelayed({
                     generateGradient()
                 }, -2000)
@@ -61,8 +60,8 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
     }
 
     private fun generateGradient() {
-        binding.cvFillForegroundColor.setCardBackgroundColor(startColor.toColorInt())
-        binding.cvFillForegroundColor2.setCardBackgroundColor(endColor.toColorInt())
+        binding.cvFillForegroundColor.setCardBackgroundColor(properties.foregroundStartColor.toColorInt())
+        binding.cvFillForegroundColor2.setCardBackgroundColor(properties.foregroundEndColor.toColorInt())
 
         val sourceLayer = foreground.drawable.toBitmap()
         val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
@@ -75,7 +74,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
 
         val paint = Paint()
-        paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor.toColorInt(), endColor.toColorInt(), Shader.TileMode.CLAMP)
+        paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), properties.foregroundStartColor.toColorInt(), properties.foregroundEndColor.toColorInt(), Shader.TileMode.CLAMP)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
 

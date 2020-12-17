@@ -21,9 +21,6 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
         }
     }
 
-    private var startColor: String = "#FF000000"
-    private var endColor: String = "#FF000000"
-
     private lateinit var binding: FragmentFillBackgroundBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -33,10 +30,13 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
             fragmentManager?.popBackStack()
         }
 
+        binding.cvFillBackgroundColor.setCardBackgroundColor(properties.backgroundStartColor.toColorInt())
+        binding.cvFillBackgroundColor2.setCardBackgroundColor(properties.backgroundEndColor.toColorInt())
+
         binding.cvFillBackgroundColor.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorBackgroundStart")?.add(root, ColorPickerFragment.newInstance { color ->
                 binding.cvFillBackgroundColor.setCardBackgroundColor(color.toColorInt())
-                startColor = color
+                properties.backgroundStartColor = color
                 setGradient()
             }, "tagColorPicker")?.commit()
         }
@@ -44,7 +44,7 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
         binding.cvFillBackgroundColor2.setOnClickListener {
             fragmentManager?.beginTransaction()?.addToBackStack("colorBackgroundEnd")?.add(root, ColorPickerFragment.newInstance { color ->
                 binding.cvFillBackgroundColor2.setCardBackgroundColor(color.toColorInt())
-                endColor = color
+                properties.backgroundEndColor = color
                 setGradient()
             }, "tagColorPicker")?.commit()
         }
@@ -55,13 +55,15 @@ class FillBackgroundEditorFragment(val root: Int, val background: IconBackground
     // sets gradient to icon background
     private fun setGradient() {
         val paint = Paint()
+        Log.e("ERROR", properties.backgroundEndColor)
+
         paint.shader = LinearGradient(
             0F,
             0F,
             0F,
             background.height.toFloat(),
-            startColor.toColorInt(),
-            endColor.toColorInt(),
+            properties.backgroundStartColor.toColorInt(),
+            properties.backgroundEndColor.toColorInt(),
             Shader.TileMode.CLAMP
         )
         background.polygonFillPaint = paint
