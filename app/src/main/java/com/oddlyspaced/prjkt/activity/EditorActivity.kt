@@ -43,9 +43,9 @@ class EditorActivity : AppCompatActivity() {
 
         shapeEditorFragment = ShapeEditorFragment.newInstance(binding.imgIconBackground)
         resizeEditorFragment = ResizeEditorFragment.newInstance(binding.imgIconBackground)
-        designEditorFragment = DesignEditorFragment.newInstance(binding.imageView6)
-        moveEditorFragment = MoveEditorFragment.newInstance(binding.imageView6)
-        fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imageView6)
+        designEditorFragment = DesignEditorFragment.newInstance(binding.imgIconForeground)
+        moveEditorFragment = MoveEditorFragment.newInstance(binding.imgIconForeground)
+        fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imgIconForeground)
         filleBackgroundEditorFragment = FillBackgroundEditorFragment.newInstance(binding.frag.id, binding.imgIconBackground)
 
         binding.txEditorShape.setOnClickListener {
@@ -53,9 +53,7 @@ class EditorActivity : AppCompatActivity() {
         }
 
         binding.txEditorSize.setOnClickListener {
-            val transaction = supportFragmentManager.beginTransaction()
-            // transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            transaction.addToBackStack("size").add(binding.frag.id, resizeEditorFragment, "tagSize").commit()
+            supportFragmentManager.beginTransaction().addToBackStack("size").add(binding.frag.id, resizeEditorFragment, "tagSize").commit()
         }
 
         binding.txEditorDesign.setOnClickListener {
@@ -81,7 +79,7 @@ class EditorActivity : AppCompatActivity() {
     }
 
     private fun overlayDrawable() {
-        val sourceOriginal = binding.imageView6.drawable.toBitmap()
+        val sourceOriginal = binding.imgIconForeground.drawable.toBitmap()
         val newLayer = Bitmap.createBitmap(sourceOriginal.height, sourceOriginal.width, Bitmap.Config.ARGB_8888)
         val paint = Paint()
         // paint.color = Color.RED
@@ -97,7 +95,7 @@ class EditorActivity : AppCompatActivity() {
         val canvas = Canvas(newLayer)
         //canvas.drawColor(Color.RED)
         canvas.drawPaint(paint)
-        // binding.imageView6.setImageBitmap(newLayer)
+        // binding.imgIconForeground.setImageBitmap(newLayer)
         // At this point newLayer has the base map from which we need to cutout sourceOriginal path
         for (y in 0 until sourceOriginal.height) {
             for (x in 0 until sourceOriginal.width) {
@@ -109,7 +107,7 @@ class EditorActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.imageView6.setImageBitmap(sourceOriginal)
+        binding.imgIconForeground.setImageBitmap(sourceOriginal)
     }
 
 
