@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentEditorMoveBinding
+import com.oddlyspaced.prjkt.modal.IconProperties
 
-class MoveEditorFragment(val foreground: ImageView) : Fragment() {
+class MoveEditorFragment(private val foreground: ImageView, private val properties: IconProperties) : Fragment() {
 
     companion object {
-        fun newInstance(img: ImageView): MoveEditorFragment {
-            return MoveEditorFragment(img)
+        fun newInstance(img: ImageView, properties: IconProperties): MoveEditorFragment {
+            return MoveEditorFragment(img, properties)
         }
     }
 
@@ -30,14 +31,17 @@ class MoveEditorFragment(val foreground: ImageView) : Fragment() {
 
         binding.sliderEditorMoveX.addOnChangeListener { _, value, _ ->
             foreground.x = originalX + value
+            properties.foregroundMoveX = value
         }
 
         binding.sliderEditorMoveY.addOnChangeListener { _, value, _ ->
             foreground.y = originalY + value
+            properties.foregroundMoveY = value
         }
 
         binding.sliderEditorMoveRotate.addOnChangeListener { _, value, _ ->
             foreground.rotation = value
+            properties.foregroundRotate = value
         }
 
         return binding.root
