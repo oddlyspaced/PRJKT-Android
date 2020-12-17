@@ -9,19 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.alpha
-import androidx.core.graphics.blue
+import androidx.core.graphics.*
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-import androidx.core.graphics.green
-import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentColorPickerBinding
 
-class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
+class ColorPickerFragment(private val initialColor: String, val onColorChanged: (String) -> Unit) : Fragment() {
 
     companion object {
-        fun newInstance(onColorChanged: (String) -> Unit): ColorPickerFragment {
-            return ColorPickerFragment(onColorChanged)
+        fun newInstance(initialColor: String, onColorChanged: (String) -> Unit): ColorPickerFragment {
+            return ColorPickerFragment(initialColor, onColorChanged)
         }
     }
 
@@ -57,7 +54,16 @@ class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
             }
         }
 
-        binding.sliderColorPicker.addOnChangeListener { _, value, _ ->
+        R = initialColor.toColorInt().red
+        G = initialColor.toColorInt().green
+        B = initialColor.toColorInt().blue
+        A = initialColor.toColorInt().alpha
+
+        binding.sliderColorPicker.value = R.toFloat()
+
+        binding.sliderColorPicker.addOnChangeListener { _, value, fromUser ->
+            if (!fromUser)
+                return@addOnChangeListener
             when (active) {
                 0 -> R = value.toInt()
                 1 -> G = value.toInt()
@@ -86,7 +92,7 @@ class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
     private fun bruh() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (binding.imgColorPicker.measuredHeight > 0) {
-                applyHue(Color.GREEN)
+                applyHue(initialColor.toColorInt(), false)
             }
             else {
                 bruh()
@@ -95,7 +101,7 @@ class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private fun applyHue(color: Int) {
+    private fun applyHue(color: Int, update: Boolean = true) {
         val newLayer = Bitmap.createBitmap(binding.imgColorPicker.width, binding.imgColorPicker.height, Bitmap.Config.ARGB_8888)
         val paint = Paint()
         val luar = LinearGradient(0F, 0F, 0F, newLayer.height.toFloat(), Color.WHITE, Color.BLACK, Shader.TileMode.CLAMP)
@@ -133,14 +139,18 @@ class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
             binding.txColorPickerHex.text = hex
             binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
             binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
-            onColorChanged(hex)
+            if (update) {
+                onColorChanged(hex)
+            }
             true
         }
 
         val pixel = newLayer.getPixel(x, y)
         val hex = "#" + String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
         binding.txColorPickerHex.text = hex
-        onColorChanged(hex)
+        if (update) {
+            onColorChanged(hex)
+        }
     }
 
 }

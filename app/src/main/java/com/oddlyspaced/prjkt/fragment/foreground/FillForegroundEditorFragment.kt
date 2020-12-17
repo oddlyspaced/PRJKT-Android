@@ -37,7 +37,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         binding.cvFillForegroundColor2.setCardBackgroundColor(properties.foregroundEndColor.toColorInt())
 
         binding.cvFillForegroundColor.setOnClickListener {
-            fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundStart")?.add(root, ColorPickerFragment.newInstance { color ->
+            fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundStart")?.add(root, ColorPickerFragment.newInstance(properties.foregroundStartColor) { color ->
                 properties.foregroundStartColor = color
                 Handler(Looper.getMainLooper()).postDelayed({
                     generateGradient()
@@ -47,7 +47,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         }
 
         binding.cvFillForegroundColor2.setOnClickListener {
-            fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundEnd")?.add(root, ColorPickerFragment.newInstance { color ->
+            fragmentManager?.beginTransaction()?.addToBackStack("colorForegroundEnd")?.add(root, ColorPickerFragment.newInstance(properties.foregroundEndColor) { color ->
                 properties.foregroundEndColor = color
                 Handler(Looper.getMainLooper()).postDelayed({
                     generateGradient()
