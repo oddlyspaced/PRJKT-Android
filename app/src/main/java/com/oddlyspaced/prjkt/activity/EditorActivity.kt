@@ -27,7 +27,7 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var designEditorFragment: DesignEditorFragment
     private lateinit var moveEditorFragment: MoveEditorFragment
     private lateinit var fillForegroundEditorFragment: FillForegroundEditorFragment
-    private lateinit var filleBackgroundEditorFragment: FillBackgroundEditorFragment
+    private lateinit var fillBackgroundEditorFragment: FillBackgroundEditorFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class EditorActivity : AppCompatActivity() {
         designEditorFragment = DesignEditorFragment.newInstance(binding.imgIconForeground)
         moveEditorFragment = MoveEditorFragment.newInstance(binding.imgIconForeground)
         fillForegroundEditorFragment = FillForegroundEditorFragment.newInstance(binding.frag.id, binding.imgIconForeground)
-        filleBackgroundEditorFragment = FillBackgroundEditorFragment.newInstance(binding.frag.id, binding.imgIconBackground)
+        fillBackgroundEditorFragment = FillBackgroundEditorFragment.newInstance(binding.frag.id, binding.imgIconBackground)
 
         binding.txEditorShape.setOnClickListener {
             supportFragmentManager.beginTransaction().addToBackStack("shape").add(binding.frag.id, shapeEditorFragment, "tagShape").commit()
@@ -69,7 +69,7 @@ class EditorActivity : AppCompatActivity() {
         }
 
         binding.txEditorBackgroundFill.setOnClickListener {
-            supportFragmentManager.beginTransaction().addToBackStack("backgroundFill").add(binding.frag.id, filleBackgroundEditorFragment, "tagBackgroundFill").commit()
+            supportFragmentManager.beginTransaction().addToBackStack("backgroundFill").add(binding.frag.id, fillBackgroundEditorFragment, "tagBackgroundFill").commit()
         }
 
         binding.imgIconBackground.setOnClickListener {
