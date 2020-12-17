@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentEditorDesignBinding
+import com.oddlyspaced.prjkt.modal.IconProperties
 
-class DesignEditorFragment(val foreground: ImageView) : Fragment() {
+class DesignEditorFragment(private val foreground: ImageView, private val properties: IconProperties) : Fragment() {
 
     companion object {
-        fun newInstance(img: ImageView): DesignEditorFragment {
-            return DesignEditorFragment(img)
+        fun newInstance(img: ImageView, properties: IconProperties): DesignEditorFragment {
+            return DesignEditorFragment(img, properties)
         }
     }
 
@@ -28,6 +29,7 @@ class DesignEditorFragment(val foreground: ImageView) : Fragment() {
         binding.sliderDesignSize.addOnChangeListener { _, value, _ ->
             foreground.scaleX = value
             foreground.scaleY = value
+            properties.foregroundSize = value
         }
 
         return binding.root
