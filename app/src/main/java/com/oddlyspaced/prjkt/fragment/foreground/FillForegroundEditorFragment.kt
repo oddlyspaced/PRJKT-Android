@@ -4,25 +4,28 @@ import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentFillForegroundBinding
 import com.oddlyspaced.prjkt.fragment.ColorPickerFragment
+import com.oddlyspaced.prjkt.modal.IconProperties
 
-class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : Fragment() {
+class FillForegroundEditorFragment(val root: Int, private val foreground: ImageView, private val properties: IconProperties) : Fragment() {
 
     companion object {
-        fun newInstance(root: Int, img: ImageView): FillForegroundEditorFragment {
-            return FillForegroundEditorFragment(root, img)
+        fun newInstance(root: Int, img: ImageView, properties: IconProperties): FillForegroundEditorFragment {
+            return FillForegroundEditorFragment(root, img, properties)
         }
     }
 
-    private var startColor: Int = Color.BLACK
-    private var endColor: Int = Color.BLACK
+    private var startColor: String = "#FF000000"
+    private var endColor: String = "#FF000000"
 
     private lateinit var binding: FragmentFillForegroundBinding
 
@@ -58,8 +61,8 @@ class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : F
     }
 
     private fun generateGradient() {
-        binding.cvFillForegroundColor.setCardBackgroundColor(startColor)
-        binding.cvFillForegroundColor2.setCardBackgroundColor(endColor)
+        binding.cvFillForegroundColor.setCardBackgroundColor(startColor.toColorInt())
+        binding.cvFillForegroundColor2.setCardBackgroundColor(endColor.toColorInt())
 
         val sourceLayer = foreground.drawable.toBitmap()
         val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
@@ -72,7 +75,7 @@ class FillForegroundEditorFragment(val root: Int, val foreground: ImageView) : F
         canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
 
         val paint = Paint()
-        paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor, endColor, Shader.TileMode.CLAMP)
+        paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor.toColorInt(), endColor.toColorInt(), Shader.TileMode.CLAMP)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
 

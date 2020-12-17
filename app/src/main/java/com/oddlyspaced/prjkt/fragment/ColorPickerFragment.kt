@@ -17,10 +17,10 @@ import androidx.core.graphics.red
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentColorPickerBinding
 
-class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
+class ColorPickerFragment(val onColorChanged: (String) -> Unit) : Fragment() {
 
     companion object {
-        fun newInstance(onColorChanged: (Int) -> Unit): ColorPickerFragment {
+        fun newInstance(onColorChanged: (String) -> Unit): ColorPickerFragment {
             return ColorPickerFragment(onColorChanged)
         }
     }
@@ -129,18 +129,18 @@ class ColorPickerFragment(val onColorChanged: (Int) -> Unit) : Fragment() {
             }
 
             val pixel = newLayer.getPixel(x, y)
-            val hex = String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
+            val hex = "#" + String.format("%02x%02x%02x%02x", pixel.alpha, pixel.red, pixel.green, pixel.blue)
             binding.txColorPickerHex.text = hex
             binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
             binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
-            onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
+            onColorChanged(hex)
             true
         }
 
         val pixel = newLayer.getPixel(x, y)
-        val hex = String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
+        val hex = "#" + String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
         binding.txColorPickerHex.text = hex
-        onColorChanged(Color.argb(pixel.alpha, pixel.red, pixel.green, pixel.blue))
+        onColorChanged(hex)
     }
 
 }
