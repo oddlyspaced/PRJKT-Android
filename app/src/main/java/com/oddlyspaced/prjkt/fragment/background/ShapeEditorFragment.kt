@@ -81,23 +81,26 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
             applyProperties()
         }
 
-//        binding.sliderShapeRotation.addOnChangeListener { _, value, _ ->
-//            properties.backgroundRotation = value
-//            if (!ignore)
-//            applyProperties()
-//        }
-//
-//        binding.sliderShapeRadius.addOnChangeListener { _, value, _ ->
-//            properties.backgroundRadius = value
-//            if (!ignore)
-//            applyProperties()
-//        }
-//
-//        binding.sliderShapeSides.addOnChangeListener { _, value, _ ->
-//            properties.backgroundSides = value.toInt()
-//            if (!ignore)
-//            applyProperties()
-//        }
+        binding.sliderShapeRotation.addOnChangeListener { _, value, fromUser ->
+            if (!fromUser)
+                return@addOnChangeListener
+            properties.backgroundRotation = value
+            applyProperties()
+        }
+
+        binding.sliderShapeRadius.addOnChangeListener { _, value, fromUser ->
+            if (!fromUser)
+                return@addOnChangeListener
+            properties.backgroundRadius = value
+            applyProperties()
+        }
+
+        binding.sliderShapeSides.addOnChangeListener { _, value, fromUser ->
+            if (!fromUser)
+                return@addOnChangeListener
+            properties.backgroundSides = value.toInt()
+            applyProperties()
+        }
 
         when {
             items[0].isActive -> {
