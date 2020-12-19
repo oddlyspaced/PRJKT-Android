@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="icons">
+        <item>@drawable/chrome</item>
+        <item>@drawable/camera</item>
+        <item>@drawable/clock</item>
+        <item>@drawable/calendar</item>
+        <item>@drawable/contacts</item>
+        <item>@drawable/clock</item>
+        <item>@drawable/spotify</item>
+        <item>@drawable/message</item>
+        <item>@drawable/whatsapp</item>
+        <item>@drawable/instagram</item>
+        <item>@drawable/google</item>
+        <item>@drawable/settings</item>
+        <item>@drawable/phone</item>
+        <item>@drawable/netflix</item>
+        <item>@drawable/playstore</item>
+        <item>@drawable/telegram</item>
+        <item>@drawable/gmail</item>
+    </integer-array>
+</resources>
