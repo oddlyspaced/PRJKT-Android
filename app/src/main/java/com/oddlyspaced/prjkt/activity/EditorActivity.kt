@@ -1,16 +1,11 @@
 package com.oddlyspaced.prjkt.activity
 
-import android.graphics.*
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.alpha
-import androidx.core.graphics.blue
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.green
-import androidx.core.graphics.red
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
 import com.oddlyspaced.prjkt.fragment.background.FillBackgroundEditorFragment
 import com.oddlyspaced.prjkt.fragment.background.ResizeEditorFragment
@@ -95,9 +90,18 @@ class EditorActivity : AppCompatActivity() {
         }
 
         binding.cardView.setOnClickListener {
-            binding.imgIconForeground.setImageResource(resources.getIdentifier("chrome", "drawable", applicationContext.packageName))
-            FillForegroundEditorFragment.generateGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
+            showAlert()
         }
+    }
+
+    private fun showAlert() {
+        val builder = MaterialAlertDialogBuilder(this)
+        builder.setTitle("Rendering")
+        builder.setMessage("Please wait while we render the icons and package it into an apk...")
+//        builder.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
+//        }
+        builder.setCancelable(false)
+        builder.show()
     }
 
 }
