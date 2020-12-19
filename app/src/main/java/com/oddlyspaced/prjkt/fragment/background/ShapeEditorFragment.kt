@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.adapter.ShapeSelectAdapter
 import com.oddlyspaced.prjkt.databinding.FragmentEditorShapeBinding
 import com.oddlyspaced.prjkt.external.IconBackground
@@ -32,6 +33,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
 
         val items = arrayListOf(
             ShapeItem( // circle
+                R.drawable.circle,
                 false
             ) {
                 active = 0
@@ -41,7 +43,8 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 hideRadiusSection()
                 hideSidesSection()
             },
-            ShapeItem( // oval
+            ShapeItem( // rounded square
+                R.drawable.ic_rounded_square,
                 false
             ) {
                 active = 1
@@ -52,6 +55,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 showRadiusSection()
             },
             ShapeItem( // polygon
+                R.drawable.ic_hex,
                 false
             ) {
                 active = 2

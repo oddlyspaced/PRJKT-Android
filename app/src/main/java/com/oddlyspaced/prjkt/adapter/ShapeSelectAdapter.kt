@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
@@ -18,6 +19,7 @@ class ShapeSelectAdapter(private val list: ArrayList<ShapeItem>): RecyclerView.A
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val card: MaterialCardView = ItemShapeBinding.bind(itemView).cardItemSingle
+        val icon: ImageView = ItemShapeBinding.bind(itemView).imgShape
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +34,7 @@ class ShapeSelectAdapter(private val list: ArrayList<ShapeItem>): RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+        holder.icon.setImageDrawable(ContextCompat.getDrawable(context, item.icon))
         if (item.isActive) {
             holder.card.strokeColor = ContextCompat.getColor(context, R.color.blue)
         }
