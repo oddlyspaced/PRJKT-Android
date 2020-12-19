@@ -12,7 +12,6 @@ import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ItemShapeBinding
 import com.oddlyspaced.prjkt.modal.ShapeItem
 
-// Adapter for the library list view on About page
 class ShapeSelectAdapter(private val list: ArrayList<ShapeItem>): RecyclerView.Adapter<ShapeSelectAdapter.ViewHolder>() {
 
     private lateinit var context: Context
