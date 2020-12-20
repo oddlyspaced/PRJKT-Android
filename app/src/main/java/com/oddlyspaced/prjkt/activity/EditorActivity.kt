@@ -12,13 +12,11 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.graphics.toColorInt
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oddlyspaced.prjkt.BuildConfig
-import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
 import com.oddlyspaced.prjkt.fragment.background.FillBackgroundEditorFragment
 import com.oddlyspaced.prjkt.fragment.background.ResizeEditorFragment
@@ -42,6 +40,8 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var fillForegroundEditorFragment: FillForegroundEditorFragment
     private lateinit var fillBackgroundEditorFragment: FillBackgroundEditorFragment
 
+    private lateinit var alert: AlertDialog
+
     private val iconProperties = IconProperties(
         backgroundRadius = 120F,
         backgroundSides = 4,
@@ -62,6 +62,8 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        prepareEnvironment()
 
         this.window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -106,8 +108,8 @@ class EditorActivity : AppCompatActivity() {
         }
 
         binding.cardView.setOnClickListener {
+            showAlert()
             render()
-            // showAlert()
         }
     }
 
@@ -118,7 +120,7 @@ class EditorActivity : AppCompatActivity() {
 //        builder.setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
 //        }
         builder.setCancelable(false)
-        builder.show()
+        alert = builder.show()
     }
 
     private val template by lazy {
@@ -237,6 +239,7 @@ class EditorActivity : AppCompatActivity() {
             zipSigner.signZip(app.path, outFile.path)
             Toast.makeText(applicationContext, "SUCCESS", Toast.LENGTH_LONG).show()
 
+            alert.dismiss()
             installApk(outFile)
         } catch (e: Exception) {
             Toast.makeText(applicationContext, "ERROR", Toast.LENGTH_LONG).show()
