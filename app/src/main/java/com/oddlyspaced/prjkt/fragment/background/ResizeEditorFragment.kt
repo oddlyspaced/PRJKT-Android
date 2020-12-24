@@ -37,6 +37,14 @@ class ResizeEditorFragment(private val background: IconBackground, private val p
             properties.backgroundHeight = value
         }
 
+        binding.imgResizeWidthReset.setOnClickListener {
+            binding.sliderResizeWidth.value = 1F
+        }
+
+        binding.imgResizeHeightReset.setOnClickListener {
+            binding.sliderResizeHeight.value = 1F
+        }
+
         return binding.root
     }
 
