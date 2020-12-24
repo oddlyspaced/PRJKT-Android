@@ -30,6 +30,11 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
     private var A = 0
     private var active = 0
 
+    private var x = 0
+    private var y = 0
+    private var current = initialColor
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
         waitLayoutDraw()
@@ -70,7 +75,15 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
                 2 -> B = value.toInt()
                 3 -> A = value.toInt()
             }
+            current =  "#" + String.format("%02x%02x%02x%02x", A, R, G, B)
             applyHue(Color.argb(A, R, G, B))
+        }
+
+        binding.imgColorPicker.setOnTouchListener { view, motionEvent ->
+            x = motionEvent.x.toInt()
+            y = motionEvent.y.toInt()
+            applyHue(current.toColorInt())
+            true
         }
 
         return binding.root
@@ -86,9 +99,6 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
         cards[active].invalidate()
     }
 
-    private var x = 0
-    private var y = 0
-
     // waits for color picker view to get drawn on screen
     private fun waitLayoutDraw() {
         Handler(Looper.getMainLooper()).postDelayed({
@@ -101,7 +111,6 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
         }, -2000)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun applyHue(color: Int, update: Boolean = true) {
         val newLayer = Bitmap.createBitmap(binding.imgColorPicker.width, binding.imgColorPicker.height, Bitmap.Config.ARGB_8888)
         val paint = Paint()
@@ -118,37 +127,25 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
 
         binding.imgColorPicker.setImageDrawable(roundedBitmapDrawable)
 
-        binding.imgColorPicker.setOnTouchListener { view, motionEvent ->
-            x = motionEvent.x.toInt()
-            if (x < 0) {
-                x = 0
-            }
-            if (x > newLayer.width - 1) {
-                x = newLayer.width - 1
-            }
+        if (x < 0) {
+            x = 0
+        }
+        if (x > newLayer.width - 1) {
+            x = newLayer.width - 1
+        }
 
-            y = motionEvent.y.toInt()
-            if (y < 0) {
-                y = 0
-            }
-            if (y > newLayer.height - 1) {
-                y = newLayer.height - 1
-            }
-
-            val pixel = newLayer.getPixel(x, y)
-            val hex = "#" + String.format("%02x%02x%02x%02x", pixel.alpha, pixel.red, pixel.green, pixel.blue)
-            binding.txColorPickerHex.text = hex
-            binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
-            binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
-            if (update) {
-                onColorChanged(hex)
-            }
-            true
+        if (y < 0) {
+            y = 0
+        }
+        if (y > newLayer.height - 1) {
+            y = newLayer.height - 1
         }
 
         val pixel = newLayer.getPixel(x, y)
-        val hex = "#" + String.format("%02x%02x%02x", pixel.red, pixel.green, pixel.blue)
+        val hex = "#" + String.format("%02x%02x%02x%02x", pixel.alpha, pixel.red, pixel.green, pixel.blue)
         binding.txColorPickerHex.text = hex
+        binding.viewIndicator.x = x.toFloat() - (binding.viewIndicator.width/2)
+        binding.viewIndicator.y = y.toFloat() - (binding.viewIndicator.height/2)
         if (update) {
             onColorChanged(hex)
         }
