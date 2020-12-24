@@ -32,6 +32,10 @@ class DesignEditorFragment(private val foreground: ImageView, private val proper
             properties.foregroundSize = value
         }
 
+        binding.imgDesignSizeReset.setOnClickListener {
+            binding.sliderDesignSize.value = 1F
+        }
+
         return binding.root
     }
 
