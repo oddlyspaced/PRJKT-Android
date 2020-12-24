@@ -42,6 +42,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 applyProperties()
                 hideRadiusSection()
                 hideSidesSection()
+                hideRotationSection()
             },
             ShapeItem( // rounded square
                 R.drawable.ic_rounded_square,
@@ -54,6 +55,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 applyProperties()
                 hideSidesSection()
                 showRadiusSection()
+                showRotationSection()
             },
             ShapeItem( // polygon
                 R.drawable.ic_hex,
@@ -67,6 +69,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 applyProperties()
                 showRadiusSection()
                 showSidesSection()
+                showRotationSection()
             },
         )
         items[active].isActive = true
@@ -110,14 +113,17 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
             items[0].isActive -> {
                 hideRadiusSection()
                 hideSidesSection()
+                hideRotationSection()
             }
             items[1].isActive -> {
                 hideSidesSection()
                 showRadiusSection()
+                showRotationSection()
             }
             items[2].isActive -> {
                 showRadiusSection()
                 showSidesSection()
+                showRotationSection()
             }
         }
 
@@ -132,12 +138,20 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
         binding.consShapeSides.visibility = View.VISIBLE
     }
 
+    private fun showRotationSection() {
+        binding.consShapeRotation.visibility = View.VISIBLE
+    }
+
     private fun hideRadiusSection() {
         binding.consShapeRadius.visibility = View.GONE
     }
 
     private fun hideSidesSection() {
         binding.consShapeSides.visibility = View.GONE
+    }
+
+    private fun hideRotationSection() {
+        binding.consShapeRotation.visibility = View.GONE
     }
 
     private fun applyProperties() {
