@@ -78,14 +78,20 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
 
         binding.imgShapeRadiusReset.setOnClickListener {
             binding.sliderShapeRadius.value = 50F
+            properties.backgroundRadius = 50F
+            applyProperties()
         }
 
         binding.imgShapeRotationReset.setOnClickListener {
             binding.sliderShapeRotation.value = 45F
+            properties.backgroundRotation = 45F
+            applyProperties()
         }
 
         binding.imgShapeSidesReset.setOnClickListener {
-            binding.sliderShapeSides.value = 6F
+            binding.sliderShapeSides.value = 8F
+            properties.backgroundSides = 8
+            applyProperties()
         }
 
         binding.sliderShapeRotation.addOnChangeListener { _, value, fromUser ->
