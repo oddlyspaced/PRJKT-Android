@@ -48,6 +48,7 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 false
             ) {
                 active = 1
+                binding.sliderShapeRadius.value = 50F
                 properties.backgroundSides = 4
                 properties.backgroundRadius = 50F
                 applyProperties()
@@ -59,6 +60,8 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
                 false
             ) {
                 active = 2
+                binding.sliderShapeSides.value = 8F
+                binding.sliderShapeRadius.value = 50F
                 properties.backgroundSides = 8
                 properties.backgroundRadius = 50F
                 applyProperties()
@@ -71,18 +74,15 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
         binding.rvShapes.adapter = ShapeSelectAdapter(items)
 
         binding.imgShapeRadiusReset.setOnClickListener {
-            properties.backgroundRadius = 50F
-            applyProperties()
+            binding.sliderShapeRadius.value = 50F
         }
 
         binding.imgShapeRotationReset.setOnClickListener {
-            properties.backgroundRotation = 45F
-            applyProperties()
+            binding.sliderShapeRotation.value = 45F
         }
 
         binding.imgShapeSidesReset.setOnClickListener {
-            properties.backgroundSides = 3
-            applyProperties()
+            binding.sliderShapeSides.value = 6F
         }
 
         binding.sliderShapeRotation.addOnChangeListener { _, value, fromUser ->
