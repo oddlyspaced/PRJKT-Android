@@ -161,6 +161,9 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
     }
 
     private fun applyProperties() {
+        binding.txShapeRadius.text = "${properties.backgroundRadius}º"
+        binding.txShapeSides.text = properties.backgroundSides.toString()
+        binding.txShapeRotation.text = "${properties.backgroundRotation}º"
         background.cornerRadius = properties.backgroundRadius
         background.numberOfSides = properties.backgroundSides
         background.polygonRotation = properties.backgroundRotation
