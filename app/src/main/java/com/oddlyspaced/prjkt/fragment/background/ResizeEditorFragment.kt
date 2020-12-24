@@ -30,11 +30,13 @@ class ResizeEditorFragment(private val background: IconBackground, private val p
         binding.sliderResizeWidth.addOnChangeListener { _, value, _ ->
             background.scaleX = value
             properties.backgroundWidth = value
+            binding.txResizeWidth.text = properties.backgroundWidth.toString()
         }
 
         binding.sliderResizeHeight.addOnChangeListener { _, value, _ ->
             background.scaleY = value
             properties.backgroundHeight = value
+            binding.txResizeHeight.text = properties.backgroundHeight.toString()
         }
 
         binding.imgResizeWidthReset.setOnClickListener {
@@ -44,6 +46,9 @@ class ResizeEditorFragment(private val background: IconBackground, private val p
         binding.imgResizeHeightReset.setOnClickListener {
             binding.sliderResizeHeight.value = 1F
         }
+
+        binding.txResizeWidth.text = properties.backgroundWidth.toString()
+        binding.txResizeHeight.text = properties.backgroundHeight.toString()
 
         return binding.root
     }

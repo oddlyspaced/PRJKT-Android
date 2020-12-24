@@ -171,7 +171,7 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/txResizeWidth2"
+                    android:id="@+id/txResizeHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
