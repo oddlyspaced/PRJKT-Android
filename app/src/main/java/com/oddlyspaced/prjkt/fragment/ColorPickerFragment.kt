@@ -32,7 +32,7 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentColorPickerBinding.inflate(layoutInflater, container, false)
-        bruh()
+        waitLayoutDraw()
 
         binding.imageView7.setOnClickListener {
             fragmentManager?.popBackStack()
@@ -89,13 +89,14 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
     private var x = 0
     private var y = 0
 
-    private fun bruh() {
+    // waits for color picker view to get drawn on screen
+    private fun waitLayoutDraw() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (binding.imgColorPicker.measuredHeight > 0) {
                 applyHue(initialColor.toColorInt(), false)
             }
             else {
-                bruh()
+                waitLayoutDraw()
             }
         }, -2000)
     }
