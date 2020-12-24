@@ -44,6 +44,18 @@ class MoveEditorFragment(private val foreground: ImageView, private val properti
             properties.foregroundRotate = value
         }
 
+        binding.imgEditorMoveX.setOnClickListener {
+            binding.sliderEditorMoveX.value = 0F
+        }
+
+        binding.imgEditorMoveY.setOnClickListener {
+            binding.sliderEditorMoveY.value = 0F
+        }
+
+        binding.imgEditorRotate.setOnClickListener {
+            binding.sliderEditorMoveRotate.value = 0F
+        }
+
         return binding.root
     }
 
