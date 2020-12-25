@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -37,7 +37,7 @@
                 app:srcCompat="@drawable/whatsapp"
                 app:tint="@android:color/white" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
