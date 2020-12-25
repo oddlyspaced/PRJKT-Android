@@ -8,9 +8,11 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.*
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentColorPickerBinding
 
@@ -19,6 +21,25 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
     companion object {
         fun newInstance(initialColor: String, onColorChanged: (String) -> Unit): ColorPickerFragment {
             return ColorPickerFragment(initialColor, onColorChanged)
+        }
+
+        fun generateGradient(foreground: ImageView, startColor: String, endColor: String) {
+            val sourceLayer = foreground.drawable.toBitmap()
+            val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
+            val canvasOverlay = Canvas(overlayLayer)
+            canvasOverlay.drawColor(Color.RED)
+
+            val mergedLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
+            val canvasMerged = Canvas(mergedLayer)
+
+            canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
+
+            val paint = Paint()
+            paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor.toColorInt(), endColor.toColorInt(), Shader.TileMode.CLAMP)
+            paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+            canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
+
+            foreground.setImageBitmap(mergedLayer)
         }
     }
 

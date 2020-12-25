@@ -18,6 +18,7 @@ import androidx.core.content.FileProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.oddlyspaced.prjkt.BuildConfig
 import com.oddlyspaced.prjkt.databinding.ActivityEditorBinding
+import com.oddlyspaced.prjkt.fragment.ColorPickerFragment
 import com.oddlyspaced.prjkt.fragment.background.FillBackgroundEditorFragment
 import com.oddlyspaced.prjkt.fragment.background.ResizeEditorFragment
 import com.oddlyspaced.prjkt.fragment.background.ShapeEditorFragment
@@ -212,7 +213,7 @@ class EditorActivity : AppCompatActivity() {
     private fun render() {
         for (icon in icons) {
             binding.imgIconForeground.setImageResource(resources.getIdentifier(icon, "drawable", applicationContext.packageName))
-            FillForegroundEditorFragment.generateGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
+            ColorPickerFragment.generateGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
             renderIcon("$icon")
         }
 
