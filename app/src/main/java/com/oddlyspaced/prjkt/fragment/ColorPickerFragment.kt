@@ -23,7 +23,33 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
             return ColorPickerFragment(initialColor, onColorChanged)
         }
 
-        fun applyForegroundGradient(foreground: ImageView, startColor: String, endColor: String) {
+        fun applyForegroundGradient(foreground: ImageView, startColor: String, endColor: String, angle: Int) {
+            val w = foreground.width.toFloat()
+            val h = foreground.height.toFloat()
+
+            // -180 -135 -90 -45 0 45 90 135 180
+            val startPointers = arrayOf(
+                PointF(w/2F, 0F),
+                PointF(w, 0F),
+                PointF(w, h/2F),
+                PointF(w, h),
+                PointF(w/2F, h),
+                PointF(0F, h),
+                PointF(0F, h/2F),
+                PointF(0F, 0F),
+            )
+            val endPointers  = arrayOf(
+                PointF(w/2F, h),
+                PointF(0F, h),
+                PointF(0F, h/2F),
+                PointF(0F, 0F),
+                PointF(w/2F, 0F),
+                PointF(w, 0F),
+                PointF(w, h/2F),
+                PointF(w, h),
+            )
+
+
             val sourceLayer = foreground.drawable.toBitmap()
             val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
             val canvasOverlay = Canvas(overlayLayer)
@@ -35,7 +61,7 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
             canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
 
             val paint = Paint()
-            paint.shader = LinearGradient(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), intArrayOf(startColor.toColorInt(), endColor.toColorInt()), floatArrayOf(0.25F, 0.75F), Shader.TileMode.CLAMP)
+            paint.shader = LinearGradient(startPointers[angle].x, startPointers[angle].y, endPointers[angle].x, endPointers[angle].y, startColor.toColorInt(), endColor.toColorInt(), Shader.TileMode.CLAMP)
             paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
             canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
 
