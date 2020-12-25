@@ -1,6 +1,5 @@
 package com.oddlyspaced.prjkt.fragment.foreground
 
-import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.toColorInt
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.prjkt.databinding.FragmentFillForegroundBinding
