@@ -53,6 +53,20 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
             }, "tagColorPicker")?.commit()
         }
 
+        val angles = arrayOf(0, 45, 90, 135, 180, 225, 270, 360)
+
+        binding.sliderFillForegroundAngle.addOnChangeListener { _, value, _ ->
+            properties.foregroundAngle = value.toInt()
+            binding.txFillForegroundAngle.text = angles[properties.foregroundAngle].toString()
+            generateGradient()
+        }
+
+        binding.txEditorReset.setOnClickListener {
+            binding.sliderFillForegroundAngle.value = 0F
+        }
+
+        binding.txFillForegroundAngle.text = angles[properties.backgroundAngle].toString()
+
         return binding.root
     }
 
@@ -60,7 +74,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         binding.cvFillForegroundColor.setCardBackgroundColor(properties.foregroundStartColor.toColorInt())
         binding.cvFillForegroundColor2.setCardBackgroundColor(properties.foregroundEndColor.toColorInt())
 
-        ColorPickerFragment.applyForegroundGradient(foreground, properties.foregroundStartColor, properties.foregroundEndColor)
+        ColorPickerFragment.applyForegroundGradient(foreground, properties.foregroundStartColor, properties.foregroundEndColor, properties.foregroundAngle)
     }
 
 }
