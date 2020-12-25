@@ -1,6 +1,8 @@
 package com.oddlyspaced.prjkt.fragment.background
 
-import android.graphics.*
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Shader
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
