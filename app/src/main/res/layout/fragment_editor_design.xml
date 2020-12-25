@@ -102,6 +102,7 @@
                     android:value="1"
                     android:valueFrom="0"
                     android:valueTo="2"
+                    app:labelBehavior="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
