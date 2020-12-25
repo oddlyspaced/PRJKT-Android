@@ -110,7 +110,7 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/txEditorStatus2"
+                    android:id="@+id/txEditorStatusX"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -171,7 +171,7 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/txEditorStatus3"
+                    android:id="@+id/txEditorStatusY"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -234,7 +234,7 @@
                     app:trackHeight="8dp" />
 
                 <TextView
-                    android:id="@+id/txEditorStatus4"
+                    android:id="@+id/txEditorStatusRotate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
