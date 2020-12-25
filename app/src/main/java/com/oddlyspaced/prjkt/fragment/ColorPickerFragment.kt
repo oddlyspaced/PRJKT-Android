@@ -35,7 +35,7 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
             canvasMerged.drawBitmap(sourceLayer, 0F, 0F, null)
 
             val paint = Paint()
-            paint.shader = LinearGradient(0F, 0F, 0F, sourceLayer.height.toFloat(), startColor.toColorInt(), endColor.toColorInt(), Shader.TileMode.CLAMP)
+            paint.shader = LinearGradient(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), intArrayOf(startColor.toColorInt(), endColor.toColorInt()), floatArrayOf(0.25F, 0.75F), Shader.TileMode.CLAMP)
             paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
             canvasMerged.drawRect(0F, 0F, sourceLayer.width.toFloat(), sourceLayer.height.toFloat(), paint)
 

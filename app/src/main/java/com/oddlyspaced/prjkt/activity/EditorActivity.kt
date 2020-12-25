@@ -51,13 +51,15 @@ class EditorActivity : AppCompatActivity() {
         backgroundHeight = 1F,
         backgroundStartColor = "#FF000000",
         backgroundEndColor = "#FF000000",
+        backgroundAngle = 0,
         foregroundSize = 1F,
         foregroundMoveX = 0F,
         foregroundMoveY = 0F,
         foregroundRotate = 0F,
         foregroundStartColor = "#FFFFFFFF",
         foregroundEndColor = "#FFFFFFFF",
-    )
+        foregroundAngle = 0,
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

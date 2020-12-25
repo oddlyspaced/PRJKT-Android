@@ -8,10 +8,12 @@ data class IconProperties(
     var backgroundHeight: Float,
     var backgroundStartColor: String,
     var backgroundEndColor: String,
+    var backgroundAngle: Int,
     var foregroundSize: Float,
     var foregroundMoveX: Float,
     var foregroundMoveY: Float,
     var foregroundRotate: Float,
     var foregroundStartColor: String,
     var foregroundEndColor: String,
+    var foregroundAngle: Int,
 )
