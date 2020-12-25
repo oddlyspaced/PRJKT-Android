@@ -38,6 +38,8 @@ class DesignEditorFragment(private val foreground: ImageView, private val proper
             binding.txDesignSize.text = "1"
         }
 
+        binding.txDesignSize.text = properties.foregroundSize.toString()
+
         return binding.root
     }
 
