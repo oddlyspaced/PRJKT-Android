@@ -215,7 +215,7 @@ class EditorActivity : AppCompatActivity() {
     private fun render() {
         for (icon in icons) {
             binding.imgIconForeground.setImageResource(resources.getIdentifier(icon, "drawable", applicationContext.packageName))
-            ColorPickerFragment.generateGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
+            ColorPickerFragment.applyForegroundGradient(binding.imgIconForeground, iconProperties.foregroundStartColor, iconProperties.foregroundEndColor)
             renderIcon("$icon")
         }
 

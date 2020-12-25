@@ -23,7 +23,7 @@ class ColorPickerFragment(private val initialColor: String, val onColorChanged: 
             return ColorPickerFragment(initialColor, onColorChanged)
         }
 
-        fun generateGradient(foreground: ImageView, startColor: String, endColor: String) {
+        fun applyForegroundGradient(foreground: ImageView, startColor: String, endColor: String) {
             val sourceLayer = foreground.drawable.toBitmap()
             val overlayLayer = Bitmap.createBitmap(sourceLayer.height, sourceLayer.width, Bitmap.Config.ARGB_8888)
             val canvasOverlay = Canvas(overlayLayer)

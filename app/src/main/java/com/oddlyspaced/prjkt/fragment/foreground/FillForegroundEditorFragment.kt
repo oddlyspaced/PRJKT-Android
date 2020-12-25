@@ -62,7 +62,7 @@ class FillForegroundEditorFragment(val root: Int, private val foreground: ImageV
         binding.cvFillForegroundColor.setCardBackgroundColor(properties.foregroundStartColor.toColorInt())
         binding.cvFillForegroundColor2.setCardBackgroundColor(properties.foregroundEndColor.toColorInt())
 
-        ColorPickerFragment.generateGradient(foreground, properties.foregroundStartColor, properties.foregroundEndColor)
+        ColorPickerFragment.applyForegroundGradient(foreground, properties.foregroundStartColor, properties.foregroundEndColor)
     }
 
 }
