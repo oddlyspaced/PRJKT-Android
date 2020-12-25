@@ -133,6 +133,8 @@ class ShapeEditorFragment(val background: IconBackground, private val properties
             }
         }
 
+        applyProperties()
+
         return binding.root
     }
 
