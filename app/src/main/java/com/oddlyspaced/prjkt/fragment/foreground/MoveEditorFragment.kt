@@ -32,16 +32,19 @@ class MoveEditorFragment(private val foreground: ImageView, private val properti
         binding.sliderEditorMoveX.addOnChangeListener { _, value, _ ->
             foreground.x = originalX + value
             properties.foregroundMoveX = value
+            binding.txEditorStatusX.text = properties.foregroundMoveX.toString()
         }
 
         binding.sliderEditorMoveY.addOnChangeListener { _, value, _ ->
             foreground.y = originalY + value
             properties.foregroundMoveY = value
+            binding.txEditorStatusY.text = properties.foregroundMoveY.toString()
         }
 
         binding.sliderEditorMoveRotate.addOnChangeListener { _, value, _ ->
             foreground.rotation = value
             properties.foregroundRotate = value
+            binding.txEditorStatusRotate.text = "${properties.foregroundRotate}º"
         }
 
         binding.imgEditorMoveX.setOnClickListener {
@@ -55,6 +58,10 @@ class MoveEditorFragment(private val foreground: ImageView, private val properti
         binding.imgEditorRotate.setOnClickListener {
             binding.sliderEditorMoveRotate.value = 0F
         }
+
+        binding.txEditorStatusX.text = properties.foregroundMoveX.toString()
+        binding.txEditorStatusY.text = properties.foregroundMoveY.toString()
+        binding.txEditorStatusRotate.text = "${properties.foregroundRotate}º"
 
         return binding.root
     }
