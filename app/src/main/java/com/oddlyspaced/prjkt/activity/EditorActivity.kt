@@ -44,8 +44,8 @@ class EditorActivity : AppCompatActivity() {
     private lateinit var alert: AlertDialog
 
     private val iconProperties = IconProperties(
-        backgroundRadius = 120F,
-        backgroundSides = 4,
+        backgroundRadius = 360F,
+        backgroundSides = 360,
         backgroundRotation = 45F,
         backgroundWidth = 1F,
         backgroundHeight = 1F,

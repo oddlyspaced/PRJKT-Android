@@ -22,13 +22,13 @@ class IconBackground @JvmOverloads constructor(
     private val strokePath = Path()
     private var strokeWidth = 0f
 
-    var numberOfSides = 4
+    var numberOfSides = 360
         set(numberOfSides) {
             field = numberOfSides
             invalidate()
         }
 
-    var cornerRadius = 120f
+    var cornerRadius = 360F
         set(cornerRadius) {
             field = cornerRadius
             invalidate()
