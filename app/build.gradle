@@ -52,5 +52,4 @@ dependencies {
     implementation 'org.zeroturnaround:zt-zip:1.14'
 
     implementation "com.stkent:polygondrawingutil:1.2.0"
-    implementation 'com.github.beksomega:loopinglayout:0.3.2'
 }
