@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bekawestberg.loopinglayout.library.LoopingLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
 import com.oddlyspaced.prjkt.databinding.ActivityHomeBinding
 
