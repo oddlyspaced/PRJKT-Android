@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        startActivity(Intent(applicationContext, EditorActivity::class.java))
+        startActivity(Intent(applicationContext, HomeActivity::class.java))
 
 //        template.deleteRecursively()
 //
