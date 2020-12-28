@@ -84,17 +84,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
 
         infiniteScroll()
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            ValueAnimator.ofArgb("#d50014".toColorInt(), "#1c1c1c".toColorInt()).apply {
-                duration = 1000
-                addUpdateListener {
-                    binding.rvInfinite.setBackgroundColor(it.animatedValue as Int)
-                }
-                doOnEnd {
-                    adapt.applyIconColor("#FFFFFF".toColorInt())
-                }
-            }.start()
-        }, 5000)
+        switchColor()
     }
 
     private fun generateList() {
@@ -108,6 +98,24 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
             binding.rvInfinite.smoothScrollBy(0, 25)
             infiniteScroll()
         }, 100)
+    }
+
+    private var currentColor = 0
+
+    private fun switchColor() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            ValueAnimator.ofArgb(if (currentColor == 0) "#d50014".toColorInt() else "#1c1c1c".toColorInt(), if (currentColor == 0) "#1c1c1c".toColorInt() else "#d50014".toColorInt()).apply {
+                duration = 1000
+                addUpdateListener {
+                    binding.rvInfinite.setBackgroundColor(it.animatedValue as Int)
+                }
+                doOnEnd {
+                    adapt.applyIconColor(if (currentColor == 0) "#FFFFFF".toColorInt() else "#111111".toColorInt())
+                    currentColor = if (currentColor == 0) 1 else 0
+                }
+            }.start()
+            switchColor()
+        }, 5000)
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
