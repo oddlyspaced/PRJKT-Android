@@ -1,5 +1,6 @@
 package com.oddlyspaced.prjkt.activity
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.hardware.Sensor
@@ -14,6 +15,8 @@ import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
@@ -80,6 +83,18 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         }
 
         infiniteScroll()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            ValueAnimator.ofArgb("#d50014".toColorInt(), "#1c1c1c".toColorInt()).apply {
+                duration = 1000
+                addUpdateListener {
+                    binding.rvInfinite.setBackgroundColor(it.animatedValue as Int)
+                }
+                doOnEnd {
+                    adapt.applyIconColor("#FFFFFF".toColorInt())
+                }
+            }.start()
+        }, 5000)
     }
 
     private fun generateList() {

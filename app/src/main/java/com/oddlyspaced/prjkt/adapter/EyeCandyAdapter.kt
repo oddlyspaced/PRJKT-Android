@@ -1,5 +1,6 @@
 package com.oddlyspaced.prjkt.adapter
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.oddlyspaced.prjkt.databinding.ItemEyeCandyBinding
 class EyeCandyAdapter(private val list: ArrayList<Int>): RecyclerView.Adapter<EyeCandyAdapter.ViewHolder>() {
 
     private lateinit var context: Context
+    private var currentColor = "#111111".toColorInt()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img: ImageView = ItemEyeCandyBinding.bind(itemView).imgEyeCandy
@@ -32,7 +34,12 @@ class EyeCandyAdapter(private val list: ArrayList<Int>): RecyclerView.Adapter<Ey
         val pos = position % list.size
         val item = list[pos]
         holder.img.setImageResource(item)
-        holder.img.setColorFilter("#111111".toColorInt())
+        holder.img.setColorFilter(currentColor)
+    }
+
+    fun applyIconColor(color: Int) {
+        currentColor = color
+        notifyDataSetChanged()
     }
 
 }
