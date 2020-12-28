@@ -54,8 +54,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         "settings"
     )
 
-    private val startColors = arrayOf("#71feff", "#a5f777", "#f94f2e")
-    private val endColors = arrayListOf("#686afd", "#6ef5cc", "#d92475")
+    private val iconColors = arrayOf("#71feff", "#a5f777", "#f94f2e")
     private val bgColors = arrayListOf("#050714".toColorInt(), "#181818".toColorInt(), "#181818".toColorInt())
     private var currentColor = 0
 
@@ -110,19 +109,19 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         Handler(Looper.getMainLooper()).postDelayed({
             var prev = currentColor - 1
             if (prev == -1)
-                prev = startColors.size - 1
+                prev = iconColors.size - 1
 
             ValueAnimator.ofArgb(bgColors[prev], bgColors[currentColor]).apply {
                 duration = 1000
                 doOnStart {
-                    adapt.applyIconColor(startColors[currentColor].toColorInt())
+                    adapt.applyIconColor(iconColors[currentColor].toColorInt())
                 }
                 addUpdateListener {
                     binding.rvInfinite.setBackgroundColor(it.animatedValue as Int)
                 }
                 doOnEnd {
                     currentColor++
-                    if (currentColor == startColors.size)
+                    if (currentColor == iconColors.size)
                         currentColor = 0
                 }
             }.start()

@@ -13,7 +13,7 @@ import com.oddlyspaced.prjkt.databinding.ItemEyeCandyBinding
 class EyeCandyAdapter(private val list: ArrayList<Int>): RecyclerView.Adapter<EyeCandyAdapter.ViewHolder>() {
 
     private lateinit var context: Context
-    private var currentColor = "#111111".toColorInt()
+    private var currentColor = "#71feff".toColorInt()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img: ImageView = ItemEyeCandyBinding.bind(itemView).imgEyeCandy
