@@ -100,14 +100,12 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         }, 100)
     }
 
-    private var rot = 0F
-
     override fun onSensorChanged(event: SensorEvent?) {
         if (binding.rvInfinite.rotation > 45 || binding.rvInfinite.rotation < -45) {
             return
         }
 
-        rot = Math.toDegrees(event!!.values[0].toDouble()).toFloat() / 25
+        val rot = Math.toDegrees(event!!.values[0].toDouble()).toFloat() / 25
         if (abs(rot).toInt() < 3) {
             return
         }
