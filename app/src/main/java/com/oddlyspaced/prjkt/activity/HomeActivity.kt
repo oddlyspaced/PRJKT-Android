@@ -88,7 +88,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
     private fun generateList() {
         repeat(100) {
             icons.forEach { icon ->
-                list.add(resources.getIdentifier(icons.random(), "drawable", packageName))
+                list.add(resources.getIdentifier(icon, "drawable", packageName))
             }
         }
     }
