@@ -6,16 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import com.oddlyspaced.prjkt.R
 import com.oddlyspaced.prjkt.databinding.ItemEyeCandyBinding
-import com.oddlyspaced.prjkt.databinding.ItemShapeBinding
-import com.oddlyspaced.prjkt.modal.ShapeItem
 
-class EyeCandyAdapter(private val list: ArrayList<String>): RecyclerView.Adapter<EyeCandyAdapter.ViewHolder>() {
+class EyeCandyAdapter(private val list: ArrayList<Int>): RecyclerView.Adapter<EyeCandyAdapter.ViewHolder>() {
 
     private lateinit var context: Context
 
@@ -35,8 +30,8 @@ class EyeCandyAdapter(private val list: ArrayList<String>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
+        holder.img.setImageResource(item)
         holder.img.setColorFilter(Color.WHITE)
-        // holder.text.text = item
     }
 
 }
