@@ -25,11 +25,12 @@ class EyeCandyAdapter(private val list: ArrayList<Int>): RecyclerView.Adapter<Ey
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return Integer.MAX_VALUE
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = list[position]
+        val pos = position % list.size
+        val item = list[pos]
         holder.img.setImageResource(item)
         holder.img.setColorFilter("#111111".toColorInt())
     }
