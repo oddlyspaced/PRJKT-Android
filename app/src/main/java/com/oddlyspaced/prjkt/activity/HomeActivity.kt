@@ -2,24 +2,24 @@ package com.oddlyspaced.prjkt.activity
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.Sensor.TYPE_ACCELEROMETER
 import android.hardware.Sensor.TYPE_GYROSCOPE
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.renderscript.Sampler
 import android.util.Log
+import android.view.View
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
 import com.oddlyspaced.prjkt.databinding.ActivityHomeBinding
-import kotlin.math.abs
-import kotlin.math.absoluteValue
 
 class HomeActivity : AppCompatActivity(), SensorEventListener {
 
@@ -56,6 +56,15 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        this.window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            statusBarColor = Color.TRANSPARENT
+            navigationBarColor = Color.TRANSPARENT
+        }
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)
