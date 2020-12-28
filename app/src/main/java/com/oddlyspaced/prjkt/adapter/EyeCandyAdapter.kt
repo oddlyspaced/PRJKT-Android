@@ -1,6 +1,5 @@
 package com.oddlyspaced.prjkt.adapter
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
