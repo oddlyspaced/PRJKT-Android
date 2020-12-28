@@ -1,6 +1,5 @@
 package com.oddlyspaced.prjkt.activity
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.hardware.Sensor
@@ -12,7 +11,6 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +18,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
 import com.oddlyspaced.prjkt.databinding.ActivityHomeBinding
-import kotlin.math.abs
 
 class HomeActivity : AppCompatActivity(), SensorEventListener {
 
@@ -101,23 +98,23 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        if (binding.rvInfinite.rotation > 45 || binding.rvInfinite.rotation < -45) {
-            return
-        }
-
-        val rot = Math.toDegrees(event!!.values[0].toDouble()).toFloat() / 25
-        if (abs(rot).toInt() < 3) {
-            return
-        }
-
-        Log.d("Sensor", rot.toString())
-        ValueAnimator.ofFloat(binding.rvInfinite.rotation, rot).apply {
-            duration = 100
-            addUpdateListener {
-                binding.rvInfinite.rotation = it.animatedValue as Float
-            }
-        }
-        binding.rvInfinite.rotation = rot
+//        if (binding.rvInfinite.rotation > 45 || binding.rvInfinite.rotation < -45) {
+//            return
+//        }
+//
+//        val rot = Math.toDegrees(event!!.values[0].toDouble()).toFloat() / 25
+//        if (abs(rot).toInt() < 3) {
+//            return
+//        }
+//
+//        Log.d("Sensor", rot.toString())
+//        ValueAnimator.ofFloat(binding.rvInfinite.rotation, rot).apply {
+//            duration = 100
+//            addUpdateListener {
+//                binding.rvInfinite.rotation = it.animatedValue as Float
+//            }
+//        }
+//        binding.rvInfinite.rotation = rot
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
