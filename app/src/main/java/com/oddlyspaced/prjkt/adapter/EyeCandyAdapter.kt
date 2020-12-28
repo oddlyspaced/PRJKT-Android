@@ -1,6 +1,7 @@
 package com.oddlyspaced.prjkt.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ class EyeCandyAdapter(private val list: ArrayList<String>): RecyclerView.Adapter
     private lateinit var context: Context
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text: TextView = ItemEyeCandyBinding.bind(itemView).txEyeCandy
+        val img: ImageView = ItemEyeCandyBinding.bind(itemView).imgEyeCandy
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +35,8 @@ class EyeCandyAdapter(private val list: ArrayList<String>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        holder.text.text = item
+        holder.img.setColorFilter(Color.WHITE)
+        // holder.text.text = item
     }
 
 }
