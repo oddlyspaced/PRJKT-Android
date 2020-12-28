@@ -16,6 +16,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,6 +53,11 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         "google",
         "settings"
     )
+
+    private val startColors = arrayOf("#71feff", "#a5f777", "#f94f2e")
+    private val endColors = arrayListOf("#686afd", "#6ef5cc", "#d92475")
+    private val bgColors = arrayListOf("#050714".toColorInt(), "#181818".toColorInt(), "#181818".toColorInt())
+    private var currentColor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,18 +106,24 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         }, 100)
     }
 
-    private var currentColor = 0
-
     private fun switchColor() {
         Handler(Looper.getMainLooper()).postDelayed({
-            ValueAnimator.ofArgb(if (currentColor == 0) "#d50014".toColorInt() else "#1c1c1c".toColorInt(), if (currentColor == 0) "#1c1c1c".toColorInt() else "#d50014".toColorInt()).apply {
+            var prev = currentColor - 1
+            if (prev == -1)
+                prev = startColors.size - 1
+
+            ValueAnimator.ofArgb(bgColors[prev], bgColors[currentColor]).apply {
                 duration = 1000
+                doOnStart {
+                    adapt.applyIconColor(startColors[currentColor].toColorInt())
+                }
                 addUpdateListener {
                     binding.rvInfinite.setBackgroundColor(it.animatedValue as Int)
                 }
                 doOnEnd {
-                    adapt.applyIconColor(if (currentColor == 0) "#FFFFFF".toColorInt() else "#111111".toColorInt())
-                    currentColor = if (currentColor == 0) 1 else 0
+                    currentColor++
+                    if (currentColor == startColors.size)
+                        currentColor = 0
                 }
             }.start()
             switchColor()
