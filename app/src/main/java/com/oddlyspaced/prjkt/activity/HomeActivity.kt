@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
             adapter = adapt
         }
 
-        // infiniteScroll()
+        infiniteScroll()
     }
 
     private fun generateList() {
@@ -93,23 +93,9 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         }
     }
 
-
-    private var current = 0
-
     private fun infiniteScroll() {
         Handler(Looper.getMainLooper()).postDelayed({
-            lm.scrollToPosition(
-              when {
-                  (current == list.size) -> {
-                      current = 0
-                      0
-                  }
-                  else -> {
-                      current * 4
-                  }
-              }
-            )
-            current++
+            binding.rvInfinite.smoothScrollBy(0, 25)
             infiniteScroll()
         }, 100)
     }
