@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
 import com.oddlyspaced.prjkt.databinding.ActivityHomeBinding
+import kotlin.math.abs
 
 class HomeActivity : AppCompatActivity(), SensorEventListener {
 
@@ -117,7 +118,12 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
         if (binding.rvInfinite.rotation > 45 || binding.rvInfinite.rotation < -45) {
             return
         }
+
         rot = Math.toDegrees(event!!.values[0].toDouble()).toFloat() / 25
+        if (abs(rot).toInt() < 3) {
+            return
+        }
+
         Log.d("Sensor", rot.toString())
         ValueAnimator.ofFloat(binding.rvInfinite.rotation, rot).apply {
             duration = 100
@@ -133,7 +139,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onResume() {
         super.onResume()
-        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI)
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_STATUS_ACCURACY_LOW)
         // sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
