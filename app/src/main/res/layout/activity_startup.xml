@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#050714"
-    tools:context=".activity.HomeActivity">
+    tools:context=".activity.StartupActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvInfinite"

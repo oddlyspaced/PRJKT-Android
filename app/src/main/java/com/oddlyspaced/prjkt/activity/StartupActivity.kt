@@ -21,11 +21,11 @@ import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oddlyspaced.prjkt.adapter.EyeCandyAdapter
-import com.oddlyspaced.prjkt.databinding.ActivityHomeBinding
+import com.oddlyspaced.prjkt.databinding.ActivityStartupBinding
 
-class HomeActivity : AppCompatActivity(), SensorEventListener {
+class StartupActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityStartupBinding
 
     private lateinit var adapt: EyeCandyAdapter
     private lateinit var lm: LinearLayoutManager
@@ -60,7 +60,7 @@ class HomeActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityStartupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         this.window.apply {
