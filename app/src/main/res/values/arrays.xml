@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="icons">
-        <item>@drawable/chrome</item>
-        <item>@drawable/camera</item>
-        <item>@drawable/clock</item>
-        <item>@drawable/calendar</item>
-        <item>@drawable/contacts</item>
-        <item>@drawable/clock</item>
-        <item>@drawable/spotify</item>
-        <item>@drawable/message</item>
-        <item>@drawable/whatsapp</item>
-        <item>@drawable/instagram</item>
-        <item>@drawable/google</item>
-        <item>@drawable/settings</item>
-        <item>@drawable/phone</item>
-        <item>@drawable/netflix</item>
-        <item>@drawable/playstore</item>
-        <item>@drawable/telegram</item>
-        <item>@drawable/gmail</item>
-    </integer-array>
+    <string-array name="icons">
+        <item>chrome</item>
+        <item>spotify</item>
+        <item>camera</item>
+        <item>calendar</item>
+        <item>contacts</item>
+        <item>clock</item>
+        <item>phone</item>
+        <item>netflix</item>
+        <item>playstore</item>
+        <item>message</item>
+        <item>whatsapp</item>
+        <item>telegram</item>
+        <item>instagram</item>
+        <item>gmail</item>
+        <item>google</item>
+        <item>settings</item>
+    </string-array>
+
+    <string-array name="template_icon_start_colors">
+        <item>#71feff</item>
+        <item>#a5f777</item>
+        <item>#f94f2e</item>
+    </string-array>
+
+    <string-array name="template_icon_background_colors">
+        <item>#050714</item>
+        <item>#181818</item>
+        <item>#181818</item>
+    </string-array>
 </resources>
